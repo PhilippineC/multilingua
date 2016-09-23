@@ -1,0 +1,12 @@
+<ion-view view-title="Multilingua - Cours">
+    <ion-content>
+        <ion-list>
+            <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="langue in langues" href="#/tab/cours/{{langue.id}}">
+                <img ng-src="{{langue.drapeau}}">
+                <h2>{{langue.nom}}</h2>
+                <p>{{langue.sousTexteCours}}</p>
+                <i class="icon ion-chevron-right icon-accessory"></i>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

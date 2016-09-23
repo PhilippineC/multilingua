@@ -1,0 +1,22 @@
+<ion-view view-title="Cours | {{langue.nom}} | {{lecon.libelle}} | exercices">
+    <ion-content class="padding">
+        <div class="list card">
+            <div class="item item-title">
+                <h2>{{lecon.libelle}}</h2>
+                <p>Exercice n°{{exercice.id}}</p>
+            </div>
+
+            <div class="item item-body">
+                <h2> {{exercice.enonce}} </h2>
+                <h2>{{exercice.phrase_deb}} <span class="blockGuess">        </span> {{exercice.phrase_fin}}</h2>
+
+            </div>
+        </div>
+
+        <div class="button-bar">
+            <a class="button" ng-class="{'button-balanced': proposition.success, 'button-assertive': proposition.wrong }" ng-repeat="proposition in propositions" ng-click="clickReponse(proposition)">{{proposition.libelle}}</a>
+        </div>
+
+
+    </ion-content>
+</ion-view>

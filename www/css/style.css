@@ -1,0 +1,55 @@
+.custom-icon-phone {
+    color : green;
+    padding-right: 40px;
+}
+
+.custom-icon {
+    color : #387df4;
+}
+
+.item-title {
+    background-color : #387df4;
+    text-align: center;
+}
+
+.item-title p{
+    color : white;
+}
+
+/* Mise en forme de l'accordéon pour les cours écrits */
+
+.list .item.item-accordion {
+    line-height: 38px;
+    padding-top: 0;
+    padding-bottom: 0;
+    transition: 0.09s all linear;
+}
+.list .item.item-accordion.ng-hide {
+    line-height: 0px;
+}
+.list .item.item-accordion.ng-hide-add,
+.list .item.item-accordion.ng-hide-remove {
+    display: block !important;
+}
+
+.button-success:after{
+    background-color: blue;
+}
+
+.button-wrong:after{
+    background-color: red;
+}
+ /* block gris dans les exercices */
+.blockGuess {
+    background-color: #f7f6f8;
+    width: 70px;
+    height: 30px;
+    display: inline-block;
+    border-radius : 4px;
+    border : 1px solid dimgrey;
+    margin-left : 8px;
+    margin-right: 8px;
+    box-shadow: 5px 5px 2px #888888;
+    position : relative;
+    top : 5px;
+}

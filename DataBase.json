@@ -1,0 +1,254 @@
+{
+  "responsables" : {
+    "resp1": {
+      "nom": "Floppy",
+      "prenom": "Benoit",
+      "fonction": "Responsable Section Anglais",
+      "tel": "+33680808080",
+      "mail": "floppy.benoit",
+      "img": "img/ben.png"
+    },
+    "resp2": {
+      "nom": "Rodriguez",
+      "prenom": "Adam",
+      "fonction": "Responsable Section Espagnol",
+      "tel": "+33680808080",
+      "mail": "rodriguez.adam",
+      "img": "img/adam.jpg"
+    },
+    "resp3": {
+      "nom": "Heinz",
+      "prenom": "Maxime",
+      "fonction": "Responsable Section Allemand",
+      "tel": "+33680808080",
+      "mail": "heinz.maxime",
+      "img": "img/max.png"
+    },
+    "resp4": {
+      "nom": "Marinez",
+      "prenom": "Mickael",
+      "fonction": "Responsable Section Portuguais",
+      "tel": "+33680808080",
+      "mail": "marinez.mickael",
+      "img": "img/mike.png"
+    }
+  },
+  "langues" : {
+    "anglais": {
+      "id" : 0,
+      "nom": "Anglais",
+      "drapeau" : "img/drap_anglais.jpg",
+      "sousTexteAgenda": "The next trainings",
+      "sousTexteCours": "Learn a lesson a day",
+      "datesFormation" : {
+        "date1" : {
+          "date" : "2017/03/04",
+          "heure" : "9h",
+          "lieu" : "Salle 1",
+          "checked" : true
+        },
+        "date2" : {
+          "date" : "2016/03/03",
+          "heure" : "10h",
+          "lieu" : "Salle 25",
+          "checked" : true
+        },
+        "date3" : {
+          "date" : "2017/03/12",
+          "heure" : "8h",
+          "lieu" : "Salle 5",
+          "checked" : true
+        }
+      },
+      "cours" : {
+        "cours1" : {
+          "id" : 0,
+          "libelle" : "Leçon n°1",
+          "sousLibelle" : "Premiers pas en Anglais",
+          "src": "/mp3/Anglais/Cours1.mp3",
+          "audio" : true,
+          "ecrit" : false,
+          "chap" : null
+        },
+        "cours2" : {
+          "id" : 1,
+          "libelle" : "Leçon n°2",
+          "sousLibelle" : "Leçon de grammaire",
+          "src": "/mp3/Anglais/Cours2.mp3",
+          "audio" : true,
+          "ecrit" : false,
+          "chap" : null
+        },
+        "cours3" : {
+          "id" : 2,
+          "libelle" : "Leçon n°3",
+          "sousLibelle" : "Les verbes modaux",
+          "src": "",
+          "audio" : false,
+          "ecrit" : true,
+          "chap" : {
+            "chap1": {
+              "titre": "CAN (possibilité)",
+              "contenu": "1) Capacité : I can drive = je sais conduire; 2) Possibilité :I can come = je peux venir (mes parents ne me l'interdisent pas)"
+            },
+            "chap2": {
+              "titre": "MUST (devoir)",
+              "contenu": "1) Obligation :I must do my homework = je dois faire mes devoirs; 2) Quasi-certitude : Look at his uniform. He must be a policeman. = Regarde son uniforme. Il doit être policier. "
+            },
+            "chap3": {
+              "titre": "MAY (probabilité)",
+              "contenu": "1) Probabilité : She may come tomorrow. (Elle viendra peut-être demain. On n'en est pas sûr).; 2) Demande très polie, dans une question: May I open the window? Puis-je ouvrir la fenêtre?"
+            },
+            "chap4": {
+              "titre": "HAVE TO (obligation)",
+              "contenu": "1) A la forme affirmative, HAVE TO a un sens proche de MUST : I have to go to school = Je dois aller à l'école. 2) Attention, à la forme négative, HAVE TO prend un tout autre sens: 'ne pas avoir besoin de faire quelque chose'.It's Sunday! I don't have to go to school. = C'est dimanche, je n'ai pas besoin d'aller à l'école."
+            }
+          },
+          "exercices": {
+            "ex1" : {
+              "id":1,
+              "enonce" : "Selectionnez la bonne réponse :",
+              "phrase_deb" : "",
+              "phrase_fin" : " you come to the match this afternoon ?",
+              "propositions" : {
+                "prop1" : {
+                  "libelle": "Can",
+                  "success": false,
+                  "wrong": false
+                },
+                "prop2" : {
+                  "libelle": "Must",
+                  "success": false,
+                  "wrong": false
+                },
+                "prop3" : {
+                  "libelle": "May",
+                  "success": false,
+                  "wrong": false
+                }
+              },
+              "reponse" : "Can"
+            },
+            "ex2" : {
+              "id":2,
+              "enonce" : "Selectionnez la bonne réponse :",
+              "phrase_deb" : "I'm sorry. I ",
+              "phrase_fin" : " wash my father's car.",
+              "propositions" : {
+                "prop1" : {
+                  "libelle": "can",
+                  "success": false,
+                  "wrong": false
+                },
+                "prop2" : {
+                  "libelle": "must",
+                  "success": false,
+                  "wrong": false
+                },
+                "prop3" : {
+                  "libelle": "may",
+                  "success": false,
+                  "wrong": false
+                }
+              },
+              "reponse" : "must"
+            },
+            "ex3" : {
+              "id":3,
+              "enonce" : "Selectionnez la bonne réponse :",
+              "phrase_deb" : "But it's raining! Don't waste your time: you ",
+              "phrase_fin" : " to wash it! It will be cleaned by the rain!",
+              "propositions" : {
+                "prop1" : {
+                  "libelle": "don't have",
+                  "success": false,
+                  "wrong": false
+                },
+                "prop2" : {
+                  "libelle": "can't",
+                  "success": false,
+                  "wrong": false
+                },
+                "prop3" : {
+                  "libelle": "may",
+                  "success": false,
+                  "wrong": false
+                }
+              },
+              "reponse" : "don't have"
+            },
+            "ex4" : {
+              "id":4,
+              "enonce" : "Selectionnez la bonne réponse :",
+              "phrase_deb" : "I know, but my parents say the rain ",
+              "phrase_fin" : " stop soon.",
+              "propositions" : {
+                "prop1" : {
+                  "libelle": "don't have to",
+                  "success": false,
+                  "wrong": false
+                },
+                "prop2" : {
+                  "libelle": "can't",
+                  "success": false,
+                  "wrong": false
+                },
+                "prop3" : {
+                  "libelle": "can",
+                  "success": false,
+                  "wrong": false
+                }
+              },
+              "reponse" : "can"
+            },
+            "ex5" : {
+              "id":5,
+              "enonce" : "Selectionnez la bonne réponse :",
+              "phrase_deb" : "I can't go out with you tonight because I ",
+              "phrase_fin" : " go to my grandmother's birthday party.",
+              "propositions" : {
+                "prop1" : {
+                  "libelle": "have to",
+                  "success": false,
+                  "wrong": false
+                },
+                "prop2" : {
+                  "libelle": "can't",
+                  "success": false,
+                  "wrong": false
+                },
+                "prop3" : {
+                  "libelle": "can",
+                  "success": false,
+                  "wrong": false
+                }
+              },
+              "reponse" : "have to"
+            }
+          }
+        }
+      }
+    },
+    "allemand": {
+      "id" : 1,
+      "nom": "Allemand",
+      "drapeau" : "img/drap_allemand.jpg",
+      "sousTexteAgenda": "Die nächsten Bildungen",
+      "sousTexteCours": "Lernen Sie eine Stunde täglich"
+    },
+    "espagnol": {
+      "id" : 2,
+      "nom": "Espagnol",
+      "drapeau" : "img/drap_espagnol.jpg",
+      "sousTexteAgenda": "Las formaciones próximas",
+      "sousTexteCours": "Entérese de una lección al día"
+    },
+    "portugais": {
+      "id" : 3,
+      "nom": "Portugais",
+      "drapeau" : "img/drap_portugal.png",
+      "sousTexteAgenda": "Os próximos treinamentos",
+      "sousTexteCours": "Aprenda uma lição um dia"
+    }
+  }
+}

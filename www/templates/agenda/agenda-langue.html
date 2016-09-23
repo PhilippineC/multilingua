@@ -1,0 +1,17 @@
+<ion-view view-title="Formations à venir {{langue.nom}}">
+    <ion-content>
+
+            <div class="item item-divider">
+                Notification 1h avant la formation
+            </div>
+            <ion-toggle toggle-class="toggle-positive"
+                        ng-repeat="date in dates"
+                        ng-model="date.checked"
+                        ng-checked="item.checked">
+                <h2>  {{date.date}} à {{date.heure}}</h2>
+                <p>Lieu : {{date.lieu}} </p>
+            </ion-toggle>
+
+    </ion-content>
+</ion-view>
+

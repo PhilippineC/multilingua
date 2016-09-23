@@ -1,0 +1,16 @@
+<ion-view view-title="Cours | {{langue.nom}}">
+    <ion-content>
+
+        <ion-list>
+            <ion-item class="item item-icon-left item-icon-right" ng-repeat="lecon in cours" href="#/tab/cours/{{langue.id}}/{{lecon.id}}">
+                <i ng-show="lecon.ecrit" class="icon ion-document-text custom-icon"></i>
+                <i ng-show="lecon.audio" class="icon ion-ios-musical-notes custom-icon"></i>
+                <h2>{{lecon.libelle}}</h2>
+                <p>{{lecon.sousLibelle}}</p>
+
+                <i class="icon ion-chevron-right icon-accessory"></i>
+            </ion-item>
+        </ion-list>
+
+    </ion-content>
+</ion-view>

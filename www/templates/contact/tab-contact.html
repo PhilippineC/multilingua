@@ -1,0 +1,13 @@
+<ion-view view-title="Multilingua - Contact">
+    <ion-content>
+        <ion-list>
+            <ion-item ng-repeat="responsable in responsables" class="item item-avatar item-icon-right">
+                <img ng-src="{{responsable.img}}">
+                <h2>{{responsable.nom}} {{responsable.prenom}}</h2>
+                <p>{{responsable.fonction}}</p>
+                <i class="icon ion-ios-telephone custom-icon-phone" ng-click="phone({{responsable.tel}})"></i>
+                <i class="icon ion-android-mail custom-icon" ng-click="mailTo({{responsable.mail}})"></i>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

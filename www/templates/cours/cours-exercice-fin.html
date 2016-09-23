@@ -1,0 +1,26 @@
+<ion-view view-title="Cours | {{langue.nom}} | {{lecon.libelle}}">
+    <ion-content class="padding">
+        <div class="list card">
+            <div class="item item-title">
+                <h2>{{lecon.libelle}}</h2>
+                <p>{{lecon.sousLibelle}}</p>
+            </div>
+
+            <div class="item item-body">
+                <h2>Bravo, vous avez terminé le leçon du jour !</h2>
+                <p>Rendez-vous demain pour une nouvelle leçon !</p>
+
+            </div>
+        </div>
+
+        <div class="padding row">
+            <div class="col text-center">
+                <p>
+                    <a class="button icon-right ion-chevron-right button-energized" href="#/tab/cours/{{langue.id}}">Retour à la liste des cours</a>
+                </p>
+            </div>
+        </div>
+
+
+    </ion-content>
+</ion-view>
