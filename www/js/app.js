@@ -70,7 +70,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   })
 
   .state('tab.cours-exercice', {
-    url: '/cours/:langueId/:leconId/:exerciceId',
+    url: '/cours/:langueId/:leconId/:exerciceId/:exNum',
     views: {
       'tab-cours': {
         templateUrl: 'templates/cours/cours-exercice.html',
@@ -117,9 +117,21 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         controller: 'ContactCtrl'
       }
     }
+  })
+
+  .state('login', {
+    url: '/login',
+    templateUrl: 'templates/login.html',
+    controller: 'LoginCtrl'
+  })
+
+  .state('param', {
+    url: '/parameters',
+    templateUrl: 'templates/parameters.html',
+    controller: 'ParamCtrl'
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/cours');
+  $urlRouterProvider.otherwise('login');
 
 });

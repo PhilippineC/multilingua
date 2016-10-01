@@ -1,15 +1,17 @@
-<ion-view view-title="Cours | {{langue.nom}} | {{lecon.libelle}} | exercices">
+<ion-view view-title="exercices">
     <ion-content class="padding">
         <div class="list card">
             <div class="item item-title">
                 <h2>{{lecon.libelle}}</h2>
-                <p>Exercice n°{{exercice.id}}</p>
+                <p>Exercice n°{{exNum}}</p>
             </div>
 
-            <div class="item item-body">
+            <div class="item item-divider">
                 <h2> {{exercice.enonce}} </h2>
-                <h2>{{exercice.phrase_deb}} <span class="blockGuess">        </span> {{exercice.phrase_fin}}</h2>
+            </div>
 
+            <div class="item item-body exercice_phrase">
+                <h2>{{exercice.phrase_deb}} <span class="blockGuess"></span> {{exercice.phrase_fin}}</h2>
             </div>
         </div>
 

@@ -33,6 +33,14 @@
       "img": "img/mike.png"
     }
   },
+  "profiles" : {
+    "wXD7sHme9gSoWXcB799VgzZDDA03" : {
+      "uid": "wXD7sHme9gSoWXcB799VgzZDDA03",
+      "languesDispo": [0,2],
+       "coursTerm":  [0,1],
+      "notifActive": []
+    }
+  },
   "langues" : {
     "anglais": {
       "id" : 0,
@@ -61,31 +69,27 @@
         }
       },
       "cours" : {
-        "cours1" : {
+        "cours0" : {
           "id" : 0,
-          "libelle" : "Leçon n°1",
+          "libelle" : "Leçon du jour n°1",
           "sousLibelle" : "Premiers pas en Anglais",
-          "src": "/mp3/Anglais/Cours1.mp3",
           "audio" : true,
-          "ecrit" : false,
-          "chap" : null
+          "chap" : null,
+          "termine" : false
+        },
+        "cours1" : {
+          "id" : 1,
+          "libelle" : "Leçon du jour n°2",
+          "sousLibelle" : "Leçon de grammaire",
+          "audio" : true,
+          "chap" : null,
+          "termine" : false
         },
         "cours2" : {
-          "id" : 1,
-          "libelle" : "Leçon n°2",
-          "sousLibelle" : "Leçon de grammaire",
-          "src": "/mp3/Anglais/Cours2.mp3",
-          "audio" : true,
-          "ecrit" : false,
-          "chap" : null
-        },
-        "cours3" : {
           "id" : 2,
-          "libelle" : "Leçon n°3",
+          "libelle" : "Leçon du jour n°3",
           "sousLibelle" : "Les verbes modaux",
-          "src": "",
           "audio" : false,
-          "ecrit" : true,
           "chap" : {
             "chap1": {
               "titre": "CAN (possibilité)",
@@ -108,8 +112,8 @@
             "ex1" : {
               "id":1,
               "enonce" : "Selectionnez la bonne réponse :",
-              "phrase_deb" : "",
-              "phrase_fin" : " you come to the match this afternoon ?",
+              "phrase_deb" : "Hey John,",
+              "phrase_fin" : "you come to the match this afternoon ?",
               "propositions" : {
                 "prop1" : {
                   "libelle": "Can",
@@ -132,8 +136,8 @@
             "ex2" : {
               "id":2,
               "enonce" : "Selectionnez la bonne réponse :",
-              "phrase_deb" : "I'm sorry. I ",
-              "phrase_fin" : " wash my father's car.",
+              "phrase_deb" : "I'm sorry. I",
+              "phrase_fin" : "wash my father's car.",
               "propositions" : {
                 "prop1" : {
                   "libelle": "can",
@@ -156,8 +160,8 @@
             "ex3" : {
               "id":3,
               "enonce" : "Selectionnez la bonne réponse :",
-              "phrase_deb" : "But it's raining! Don't waste your time: you ",
-              "phrase_fin" : " to wash it! It will be cleaned by the rain!",
+              "phrase_deb" : "But it's raining! Don't waste your time: you",
+              "phrase_fin" : "to wash it! It will be cleaned by the rain!",
               "propositions" : {
                 "prop1" : {
                   "libelle": "don't have",
@@ -180,8 +184,8 @@
             "ex4" : {
               "id":4,
               "enonce" : "Selectionnez la bonne réponse :",
-              "phrase_deb" : "I know, but my parents say the rain ",
-              "phrase_fin" : " stop soon.",
+              "phrase_deb" : "I know, but my parents say the rain",
+              "phrase_fin" : "stop soon.",
               "propositions" : {
                 "prop1" : {
                   "libelle": "don't have to",
@@ -204,8 +208,8 @@
             "ex5" : {
               "id":5,
               "enonce" : "Selectionnez la bonne réponse :",
-              "phrase_deb" : "I can't go out with you tonight because I ",
-              "phrase_fin" : " go to my grandmother's birthday party.",
+              "phrase_deb" : "I can't go out with you tonight because I",
+              "phrase_fin" : "go to my grandmother's birthday party.",
               "propositions" : {
                 "prop1" : {
                   "libelle": "have to",
@@ -225,7 +229,8 @@
               },
               "reponse" : "have to"
             }
-          }
+          },
+          "termine" : false
         }
       }
     },

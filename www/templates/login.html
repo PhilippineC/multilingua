@@ -1,0 +1,25 @@
+<ion-view view-title="Bienvenue sur Multilingua" hide-back-button="true">
+    <ion-content class="has-header padding">
+        <div class="list">
+            <img src="img/logo2.jpg" class="logo">
+         </div>
+
+        <form name="loginForm" ng-submit="loginEmail()" class="list card no-margin">
+
+            <ion-input class="item item-input item-stacked-label" >
+                <ion-label >Email</ion-label>
+                <input type="email" name="email" placeholder="Your email..." ng-model="data.email">
+            </ion-input>
+
+            <ion-input class="item item-input item-stacked-label" >
+                <ion-label >Password</ion-label>
+                <input type="password" name="password" placeholder="Your Password..." ng-model="data.password">
+            </ion-input>
+
+            <ion-input class="item-input padding">
+                <input type="submit" class="button button-bar button-positive" value="Login" />
+            </ion-input>
+        </form>
+
+    </ion-content>
+</ion-view>

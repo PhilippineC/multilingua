@@ -2,12 +2,42 @@ angular.module('starter.services', [])
 
 .factory('DATABASE', function($firebaseArray, $firebaseObject) {
   var ref = new Firebase("https://multilingua-d2319.firebaseio.com");
+ /* var User = $firebaseObject.$extend({
+    LanguesDispo : function() {
+      return this.$getRecord;
+    }
+  });*/
 
   return {
+  /*  getLanguesDispo : function(uid) {
+      var util = ref.child('profiles').child(uid);
+      var user = new User(util);
+      return user.LanguesDispo();
+    },*/
+
+
     all: function(section, orderparam) {
       var data = $firebaseArray(ref.child(section).orderByChild(orderparam));
       return data;
     },
+
+    getDataUser : function(uid) {
+      var user = $firebaseObject(ref.child('profiles').child(uid));
+      return user;
+     },
+
+    getDataUserLanguesDispo : function(uid) {
+      var languesDispo = ref.child('profiles').child(uid).child('languesDispo');
+      return $firebaseArray(languesDispo);
+    },
+
+
+    getDataUserCoursTerm : function(uid) {
+      var data = ref.child('profiles').child(uid).child('coursTerm');
+      return $firebaseArray(data);
+    },
+
+
     get: function(section, id) {
       var data = null;
       ref = new Firebase("https://multilingua-d2319.firebaseio.com"+"/" + section);
@@ -30,10 +60,8 @@ angular.module('starter.services', [])
           var childData = childSnapshot.val();
           if (childData.id == langueId) {
             cours = childData.cours;
-            console.log(cours);
             angular.forEach(cours, function (lecon) {
               if (lecon.id == leconId) {
-                console.log(lecon);
                 data = lecon;
                 return true;
               }
@@ -42,8 +70,9 @@ angular.module('starter.services', [])
         })
       });
       return data;
-    },
+    }
   };
+
 
 });
 

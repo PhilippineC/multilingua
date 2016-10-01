@@ -23,6 +23,18 @@
     <link href="css/ionic.app.css" rel="stylesheet">
     -->
 
+    <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyDfd-km7LVVkLZPPjoTFgiuHFV12HFitYY",
+        authDomain: "multilingua-d2319.firebaseapp.com",
+        databaseURL: "https://multilingua-d2319.firebaseio.com",
+        storageBucket: "multilingua-d2319.appspot.com",
+        messagingSenderId: "685242094773"
+      };
+      firebase.initializeApp(config);
+    </script>
 
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
@@ -50,6 +62,11 @@
     <ion-nav-bar class="bar-positive">
       <ion-nav-back-button>
       </ion-nav-back-button>
+
+      <ion-nav-buttons side="right" ng-if="user !== defined">
+        <button class="button button-icon ion-gear-b" ui-sref="param">
+        </button>
+      </ion-nav-buttons>
     </ion-nav-bar>
     <!--
       The views will be rendered in the <ion-nav-view> directive below
