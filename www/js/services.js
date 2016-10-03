@@ -1,5 +1,10 @@
 angular.module('starter.services', [])
 
+.constant('CONSTANTES' , {
+    'NBEXS': 3,
+    'NBEXS_SUPP': 2
+})
+
 .factory('DATABASE', function($firebaseArray, $firebaseObject) {
   var ref = new Firebase("https://multilingua-d2319.firebaseio.com");
  /* var User = $firebaseObject.$extend({

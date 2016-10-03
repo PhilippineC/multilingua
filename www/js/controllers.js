@@ -27,24 +27,13 @@ angular.module('starter.controllers', ["firebase"])
 .controller('CoursLangueCtrl', function($scope, $stateParams, DATABASE) {
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
-      var leconsTerm = DATABASE.getDataUserCoursTerm(user.uid) ;
-      leconsTerm.$loaded(function() {
-        console.log(leconsTerm);
-      /*  var alea = Math.floor(Math.random() * leconsTerm.length);
-        console.log(alea);
-        var leconAleaId = leconsTerm[alea].$value;
-        console.log(leconAleaId);
-        var leconAlea = DATABASE.getData($stateParams.langueId,parseInt(leconAleaId));
-        console.log(leconAlea);
-        var exAleaId = Math.floor(Math.random() * (Object.keys(leconAlea.exercices)).length)+1;
-        console.log(exAleaId);*/
-
         var langue = DATABASE.get('langues', $stateParams.langueId);
+        $scope.langue = langue;
         var allCours = langue.cours;
-        $scope.cours = [];
-        angular.forEach(allCours, function (lecon) {
-          var ref = new Firebase("https://multilingua-d2319.firebaseio.com/profiles/" + user.uid + "/coursTerm");
-          ref.on('value', function (snapshot) {
+        var ref = new Firebase("https://multilingua-d2319.firebaseio.com/profiles/" + user.uid + "/coursTerm");
+        ref.on('value', function (snapshot) {
+          $scope.cours = [];
+          angular.forEach(allCours, function (lecon) {
             snapshot.forEach(function (childSnapshot) {
               if (childSnapshot.val() == lecon.id) {
                 lecon.termine = true;
@@ -53,7 +42,6 @@ angular.module('starter.controllers', ["firebase"])
             $scope.cours.push(lecon);
           });
         })
-      })
     } else {
       $state.go("login");
     }
@@ -61,63 +49,74 @@ angular.module('starter.controllers', ["firebase"])
 })
 
 .controller('CoursLeconCtrl', function($scope, $ionicPlatform, $cordovaMedia, $stateParams, DATABASE) {
-  $scope.langue = DATABASE.get('langues', $stateParams.langueId);
-  var lecon = DATABASE.getData($stateParams.langueId,$stateParams.leconId);
-  $scope.lecon = lecon;
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      $scope.langue = DATABASE.get('langues', $stateParams.langueId);
+      var lecon = DATABASE.getData($stateParams.langueId, $stateParams.leconId);
+      $scope.lecon = lecon;
 
-  /* Gestion du contenu texte sous forme d'accordéon */
-  $scope.chapitres = lecon.chap;
+      /* Gestion du contenu texte sous forme d'accordéon */
+      $scope.chapitres = lecon.chap;
 
-  $scope.toggleGroup = function(item) {
-    if ($scope.isGroupShown(item)) {
-      $scope.shownGroup = null;
-    } else {
-      $scope.shownGroup = item;
-    }
-  };
-  $scope.isGroupShown = function(item) {
-    return $scope.shownGroup === item;
-  };
+      $scope.toggleGroup = function (item) {
+        if ($scope.isGroupShown(item)) {
+          $scope.shownGroup = null;
+        } else {
+          $scope.shownGroup = item;
+        }
+      };
+      $scope.isGroupShown = function (item) {
+        return $scope.shownGroup === item;
+      };
 
- /* Gestion des médias */
-  if (lecon.audio) {
-    var storage = firebase.storage();
-    var audioReference = storage.refFromURL('gs://multilingua-d2319.appspot.com/Cours' + lecon.id + '.mp3');
-    audioReference.getDownloadURL().then(function (src) {
-      $ionicPlatform.ready(function () {
-        var media = $cordovaMedia.newMedia(src);
-        $scope.playMedia = function () {
-          media.play();
-        };
-        $scope.pauseMedia = function () {
-          media.pause();
-        };
-        $scope.stopMedia = function () {
-          media.stop();
-        };
-        $scope.$on('destroy', function () {
-          media.release();
+      /* Gestion des médias */
+      if (lecon.audio) {
+        var storage = firebase.storage();
+        var audioReference = storage.refFromURL('gs://multilingua-d2319.appspot.com/Cours' + lecon.id + '.mp3');
+        audioReference.getDownloadURL().then(function (src) {
+          $ionicPlatform.ready(function () {
+            var media = $cordovaMedia.newMedia(src);
+            $scope.playMedia = function () {
+              media.play();
+            };
+            $scope.pauseMedia = function () {
+              media.pause();
+            };
+            $scope.stopMedia = function () {
+              media.stop();
+            };
+            $scope.$on('destroy', function () {
+              media.release();
+            });
+          });
+        }).catch(function (error) {
+          console.log(error)
         });
-      });
-    }).catch(function (error) {
-      console.log(error)
-    });
-  }
+      }
 
-  /* Lancement du 1er exercice après avoir lu/écouté la leçon */
-  $scope.exercice = 1;
-  $scope.exNum = 1;
+      /* Lancement du 1er exercice après avoir lu/écouté la leçon */
+      $scope.exercice = 1;
+      $scope.exEnCours = 1;
+      $scope.leconEnCoursId = lecon.id;
+
+    } else {
+      $state.go("login");
+    }
+  })
 })
 
-.controller('CoursExerciceCtrl', function($scope, DATABASE, $stateParams, $timeout, $state) {
+.controller('CoursExerciceCtrl', function($scope, DATABASE, $stateParams, $timeout, $state, CONSTANTES) {
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
+      console.log($stateParams);
       var exercice = null;
       var langue = DATABASE.get('langues', $stateParams.langueId);
       $scope.langue = langue;
       var lecon = DATABASE.getData($stateParams.langueId, $stateParams.leconId);
       $scope.lecon = lecon;
-      $scope.exNum = parseInt($stateParams.exNum);
+      var leconEnCours = DATABASE.getData($stateParams.langueId, $stateParams.leconEnCoursId);
+      $scope.leconEnCours = leconEnCours;
+      $scope.exNum = parseInt($stateParams.exEnCours);
       var exercices = lecon.exercices;
       console.log((Object.keys(exercices)).length);
 
@@ -134,46 +133,56 @@ angular.module('starter.controllers', ["firebase"])
           proposition.wrong = false;
           $timeout(
               function () {
+                var ref = new Firebase("https://multilingua-d2319.firebaseio.com/profiles/" + user.uid + "/coursTerm");
                 var suite = true;
                 var nextEx = exercice.id + 1;
-                var exNum = parseInt($stateParams.exNum) + 1;
-                console.log(exNum);
-                if (exNum > 9) {
-                  var coursTerm = DATABASE.getDataUserCoursTerm(user.uid) ;
-                  coursTerm.$loaded(function () {
-                    coursTerm.forEach(function(term) {
-                      if (term.$value == lecon.id) {
+                var exEnCours = parseInt($stateParams.exEnCours) + 1;
+                if (exEnCours > (CONSTANTES.NBEXS + CONSTANTES.NBEXS_SUPP)) {
+                  console.log(CONSTANTES.NBEXS + CONSTANTES.NBEXS_SUPP);
+                    ref.on('value', function (snapshot) {
+                    snapshot.forEach(function (childSnapshot) {
+                      if (childSnapshot.val() == leconEnCours.id) {
                         suite = false;
                       }
                     });
                     if (suite) {
-                      var ref =  new Firebase("https://multilingua-d2319.firebaseio.com/profiles/" + user.uid + "/coursTerm");
                       var newLeconTerm = ref.push();
-                      newLeconTerm.set(lecon.id);
+                      newLeconTerm.set(leconEnCours.id);
                      }
-                    $state.go("tab.cours-exercice-fin", {langueId: langue.id, leconId: lecon.id});
+                    $state.go("tab.cours-exercice-fin", {langueId: langue.id, leconId: leconEnCours.id});
                   });
                 }
-                else if (exNum > 5) { //on rajoute 3 ex cherché aléatoirement dans les lecons déjà terminées
-                  console.log(exNum);
-                  var coursTerm = DATABASE.getDataUserCoursTerm(user.uid);
-                  coursTerm.$loaded(function() {
-                    console.log(coursTerm);
-                    // Attention faire un while (leconAleaId == lecon.id)
-                    var alea = Math.floor(Math.random() * coursTerm.length);
-                    console.log(alea);
-                    console.log(coursTerm[0]);
-                    var leconAleaId = coursTerm[alea].$value;
-                    console.log(leconAleaId);
-                    var leconAlea = DATABASE.getData($stateParams.langueId,leconAleaId);
-                    console.log(leconAlea);
-                    var exAleaId = Math.floor(Math.random() * (Object.keys(leconAlea.exercices)).length)+1;
-                    console.log(exAleaId);
-                    $state.go("tab.cours-exercice", {langueId: langue.id, leconId: leconAleaId , exerciceId: exAleaId , exNum: exNum});
+                else if (exEnCours > CONSTANTES.NBEXS) { //on rajoute 3 ex cherché aléatoirement dans les lecons déjà terminées
+                  console.log(exEnCours);
+                  ref.once('value', function (snapshot) {
+                    console.log(snapshot.val());
+                    if (snapshot.val() == null) { // dans le cas où c'est la première leçon terminée on s'arrête là
+                      var newLeconTerm = ref.push();
+                      newLeconTerm.set(leconEnCours.id);
+                      $state.go("tab.cours-exercice-fin", {langueId: langue.id, leconId: leconEnCours.id});
+                    }
+                    else {
+                      console.log(Object.keys(snapshot.val()).length);
+                      var alea = Math.floor(Math.random() * Object.keys(snapshot.val()).length);
+                      console.log(alea);
+                      var i = 0;
+                      snapshot.forEach(function(childSnapshot) {
+                        if (i == alea) {
+                          var leconAleaId = childSnapshot.val();
+                          console.log(leconAleaId);
+                          var leconAlea = DATABASE.getData($stateParams.langueId,leconAleaId);
+                          console.log(leconAlea);
+                          var exAleaId = Math.floor(Math.random() * (Object.keys(leconAlea.exercices)).length)+1;
+                          console.log(exAleaId);
+                          $state.go("tab.cours-exercice", {langueId: langue.id, leconId: leconAleaId , exerciceId: exAleaId , leconEnCoursId: leconEnCours.id, exEnCours: exEnCours});
+                        }
+                        i++;
+                      });
+                    }
                   });
                 }
                 else {
-                  $state.go("tab.cours-exercice", {langueId: langue.id, leconId: lecon.id, exerciceId: nextEx, exNum: exNum});
+                  $state.go("tab.cours-exercice", {langueId: langue.id, leconId: lecon.id, exerciceId: nextEx, leconEnCoursId: leconEnCours.id, exEnCours: exEnCours});
                 }
               }, 2000);
         }
@@ -196,29 +205,40 @@ angular.module('starter.controllers', ["firebase"])
 })
 
 .controller('CoursExerciceFinCtrl', function($scope, DATABASE, $stateParams) {
-  var langue = DATABASE.get('langues', $stateParams.langueId);
-  $scope.langue = langue;
-  var lecon = DATABASE.getData($stateParams.langueId, $stateParams.leconId);
-  $scope.lecon = lecon;
-  // récuperer l'id du cours et mettre en true dans la BDD utilisateur
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      var langue = DATABASE.get('langues', $stateParams.langueId);
+      $scope.langue = langue;
+      var lecon = DATABASE.getData($stateParams.langueId, $stateParams.leconId);
+      $scope.lecon = lecon;
+      // récuperer l'id du cours et mettre en true dans la BDD utilisateur
+    }
+    else {
+      state.go('login');
+    }
+  })
 })
 
-.controller('AgendaCtrl', function($scope, DATABASE) {
+.controller('AgendaCtrl', function($scope, $firebaseArray, DATABASE) {
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
-      $scope.dataUser = user;
-      var profile = DATABASE.getDataUser(user.uid);
-      var allLangues = DATABASE.all('langues', 'id');
-      var langues = [];
-      profile.$loaded()(function() {
-      /*  for (var i = 0; i<profile.langueDispo.length; i++) {
-          angular.forEach(allLangues, function(langue) {
-            if (langue.id == profile.langueDispo[i]) {
-              langues.push(langue);
-            }
+      var ref = new Firebase("https://multilingua-d2319.firebaseio.com");
+      var langues = $firebaseArray(ref.child('langues').orderByChild('id'));
+      langues.$loaded(function() {
+        console.log(langues);
+        var languesDispo = $firebaseArray(ref.child('profiles').child(user.uid).child('languesDispo'));
+        languesDispo.$loaded(function() {
+          console.log(languesDispo);
+          $scope.langues = [];
+          angular.forEach(languesDispo, function(langueDispo) {
+            angular.forEach(langues, function(langue) {
+              if (langueDispo.$value == langue.id) {
+                $scope.langues.push(langue);
+              }
+            })
           });
-        }*/
-        $scope.langues = langues;
+          console.log($scope.langues);
+        })
       });
     } else {
       $state.go("login");
@@ -227,52 +247,65 @@ angular.module('starter.controllers', ["firebase"])
 })
 
 .controller('AgendaLangueCtrl', function($scope, $stateParams, DATABASE) {
-  dates_valides = [];
-  var data = DATABASE.get('langues', $stateParams.langueId);
-  $scope.langue = data;
-  var dates = data.datesFormation;
-  angular.forEach(dates, function (date_en_cours) {
-    date_format = new Date(date_en_cours.date);
-    if (date_format >= new Date()) {
-      dates_valides.push(date_en_cours);
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      var dates_valides = [];
+      var data = DATABASE.get('langues', $stateParams.langueId);
+      $scope.langue = data;
+      var dates = data.datesFormation;
+      angular.forEach(dates, function (date_en_cours) {
+        var date_format = new Date(date_en_cours.date);
+        if (date_format >= new Date()) {
+          dates_valides.push(date_en_cours);
+        }
+      });
+      $scope.dates = dates_valides;
+      $scope.pushNotificationChange = function() {
+        console.log('Push Notification Change', $scope.pushNotification.checked);
+      };
+      $scope.pushNotification = { checked: true };
     }
-  });
-  $scope.dates = dates_valides;
-  $scope.pushNotificationChange = function() {
-    console.log('Push Notification Change', $scope.pushNotification.checked);
-  };
-  $scope.pushNotification = { checked: true };
-
-
+    else {
+      $state.go("login");
+    }
+  })
 })
 
-.controller('ContactCtrl', function($scope, DATABASE, $cordovaEmailComposer, $ionicPlatform) {
-  $scope.responsables = DATABASE.all('responsables', 'nom');
-  /* gestion de l'appel */
-  $scope.phone = function(num){
-    var call = "tel:" + num;
-    document.location.href = call;
-  };
-  /* gestion du mail
-  $scope.mailTo = function(mail) {
-    $ionicPlatform.ready(function () {
-      var email = {
-        to: 'mail@mail.com',
-        subject: 'Formations Multilingua',
-        body: '',
-        isHtml: true
-      };
+.controller('ContactCtrl', function($scope,$firebaseArray, DATABASE, $cordovaEmailComposer, $ionicPlatform) {
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      $scope.responsables = $firebaseArray(new Firebase("https://multilingua-d2319.firebaseio.com/responsables"));
 
-      $cordovaEmailComposer.isAvailable().then(function () {
-        $cordovaEmailComposer.open(email).then(null, function () {
-          // user cancelled email
-        });
-      }, function () {
-        // not available
-        alert("service non disponible");
-      });
-    })
-  } */
+      /* gestion de l'appel */
+      $scope.phone = function(num){
+        var call = "tel:" + num;
+        document.location.href = call;
+      };
+      /* gestion du mail
+       $scope.mailTo = function(mail) {
+       $ionicPlatform.ready(function () {
+       var email = {
+       to: 'mail@mail.com',
+       subject: 'Formations Multilingua',
+       body: '',
+       isHtml: true
+       };
+
+       $cordovaEmailComposer.isAvailable().then(function () {
+       $cordovaEmailComposer.open(email).then(null, function () {
+       // user cancelled email
+       });
+       }, function () {
+       // not available
+       alert("service non disponible");
+       });
+       })
+       } */
+    }
+    else {
+      $state.go("login");
+    }
+  })
 })
 
 .controller('LoginCtrl', function($scope, $state) {
@@ -301,7 +334,7 @@ angular.module('starter.controllers', ["firebase"])
     } else {
       $state.go("login");
     }
-  });
+  })
 });
 
 

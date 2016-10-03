@@ -37,7 +37,7 @@
     "wXD7sHme9gSoWXcB799VgzZDDA03" : {
       "uid": "wXD7sHme9gSoWXcB799VgzZDDA03",
       "languesDispo": [0,2],
-       "coursTerm":  [0,1],
+       "coursTerm":  [],
       "notifActive": []
     }
   },
@@ -75,6 +75,128 @@
           "sousLibelle" : "Premiers pas en Anglais",
           "audio" : true,
           "chap" : null,
+          "exercices": {
+            "ex1" : {
+              "id":1,
+              "enonce" : "Selectionnez la bonne réponse :",
+              "phrase_deb" : "Sarah",
+              "phrase_fin" : "big.",
+              "propositions" : {
+                "prop1" : {
+                  "libelle": "am",
+                  "success": false,
+                  "wrong": false
+                },
+                "prop2" : {
+                  "libelle": "are",
+                  "success": false,
+                  "wrong": false
+                },
+                "prop3" : {
+                  "libelle": "is",
+                  "success": false,
+                  "wrong": false
+                }
+              },
+              "reponse" : "is"
+            },
+            "ex2" : {
+              "id":2,
+              "enonce" : "Selectionnez la bonne réponse :",
+              "phrase_deb" : "Peter and Sarah",
+              "phrase_fin" : "big.",
+              "propositions" : {
+                "prop1" : {
+                  "libelle": "am",
+                  "success": false,
+                  "wrong": false
+                },
+                "prop2" : {
+                  "libelle": "is",
+                  "success": false,
+                  "wrong": false
+                },
+                "prop3" : {
+                  "libelle": "are",
+                  "success": false,
+                  "wrong": false
+                }
+              },
+              "reponse" : "are"
+            },
+            "ex3" : {
+              "id":3,
+              "enonce" : "Selectionnez la bonne réponse :",
+              "phrase_deb" : "You",
+              "phrase_fin" : "small.",
+              "propositions" : {
+                "prop1" : {
+                  "libelle": "am",
+                  "success": false,
+                  "wrong": false
+                },
+                "prop2" : {
+                  "libelle": "are",
+                  "success": false,
+                  "wrong": false
+                },
+                "prop3" : {
+                  "libelle": "is",
+                  "success": false,
+                  "wrong": false
+                }
+              },
+              "reponse" : "are"
+            },
+            "ex4" : {
+              "id":4,
+              "enonce" : "Selectionnez la bonne réponse :",
+              "phrase_deb" : "I",
+              "phrase_fin" : "beautiful.",
+              "propositions" : {
+                "prop1" : {
+                  "libelle": "am",
+                  "success": false,
+                  "wrong": false
+                },
+                "prop2" : {
+                  "libelle": "are",
+                  "success": false,
+                  "wrong": false
+                },
+                "prop3" : {
+                  "libelle": "is",
+                  "success": false,
+                  "wrong": false
+                }
+              },
+              "reponse" : "am"
+            },
+            "ex5" : {
+              "id":5,
+              "enonce" : "Selectionnez la bonne réponse :",
+              "phrase_deb" : "Peter and I",
+              "phrase_fin" : "stupids.",
+              "propositions" : {
+                "prop1" : {
+                  "libelle": "am",
+                  "success": false,
+                  "wrong": false
+                },
+                "prop2" : {
+                  "libelle": "is",
+                  "success": false,
+                  "wrong": false
+                },
+                "prop3" : {
+                  "libelle": "are",
+                  "success": false,
+                  "wrong": false
+                }
+              },
+              "reponse" : "are"
+            }
+          },
           "termine" : false
         },
         "cours1" : {
@@ -83,6 +205,103 @@
           "sousLibelle" : "Leçon de grammaire",
           "audio" : true,
           "chap" : null,
+          "exercices": {
+            "ex1" : {
+              "id":1,
+              "enonce" : "Selectionnez la bonne réponse :",
+              "phrase_deb" : "",
+              "phrase_fin" : "woman",
+              "propositions" : {
+                "prop1" : {
+                  "libelle": "A",
+                  "success": false,
+                  "wrong": false
+                },
+                "prop2" : {
+                  "libelle": "An",
+                  "success": false,
+                  "wrong": false
+                }
+              },
+              "reponse" : "A"
+            },
+            "ex2" : {
+              "id":2,
+              "enonce" : "Selectionnez la bonne réponse :",
+              "phrase_deb" : "",
+              "phrase_fin" : "ice cream",
+              "propositions" : {
+                "prop1" : {
+                  "libelle": "A",
+                  "success": false,
+                  "wrong": false
+                },
+                "prop2" : {
+                  "libelle": "An",
+                  "success": false,
+                  "wrong": false
+                }
+              },
+              "reponse" : "An"
+            },
+            "ex3" : {
+              "id":3,
+              "enonce" : "Selectionnez la bonne réponse :",
+              "phrase_deb" : "",
+              "phrase_fin" : "accident",
+              "propositions" : {
+                "prop1" : {
+                  "libelle": "A",
+                  "success": false,
+                  "wrong": false
+                },
+                "prop2" : {
+                  "libelle": "An",
+                  "success": false,
+                  "wrong": false
+                }
+              },
+              "reponse" : "An"
+            },
+            "ex4" : {
+              "id":4,
+              "enonce" : "Selectionnez la bonne réponse :",
+              "phrase_deb" : "",
+              "phrase_fin" : "year",
+              "propositions" : {
+                "prop1" : {
+                  "libelle": "A",
+                  "success": false,
+                  "wrong": false
+                },
+                "prop2" : {
+                  "libelle": "An",
+                  "success": false,
+                  "wrong": false
+                }
+              },
+              "reponse" : "A"
+            },
+            "ex5" : {
+              "id":5,
+              "enonce" : "Selectionnez la bonne réponse :",
+              "phrase_deb" : "",
+              "phrase_fin" : "uniform",
+              "propositions" : {
+                "prop1" : {
+                  "libelle": "A",
+                  "success": false,
+                  "wrong": false
+                },
+                "prop2" : {
+                  "libelle": "An",
+                  "success": false,
+                  "wrong": false
+                }
+              },
+              "reponse" : "A"
+            }
+          },
           "termine" : false
         },
         "cours2" : {
@@ -116,22 +335,22 @@
               "phrase_fin" : "you come to the match this afternoon ?",
               "propositions" : {
                 "prop1" : {
-                  "libelle": "Can",
+                  "libelle": "can",
                   "success": false,
                   "wrong": false
                 },
                 "prop2" : {
-                  "libelle": "Must",
+                  "libelle": "must",
                   "success": false,
                   "wrong": false
                 },
                 "prop3" : {
-                  "libelle": "May",
+                  "libelle": "may",
                   "success": false,
                   "wrong": false
                 }
               },
-              "reponse" : "Can"
+              "reponse" : "can"
             },
             "ex2" : {
               "id":2,

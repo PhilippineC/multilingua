@@ -70,7 +70,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   })
 
   .state('tab.cours-exercice', {
-    url: '/cours/:langueId/:leconId/:exerciceId/:exNum',
+    url: '/cours/:langueId/:leconId/:exerciceId/:leconEnCoursId/:exEnCours',
     views: {
       'tab-cours': {
         templateUrl: 'templates/cours/cours-exercice.html',
