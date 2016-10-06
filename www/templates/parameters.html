@@ -1,5 +1,43 @@
 <ion-view view-title="Paramètres du compte" animation="slide-right">
+    <ion-nav-buttons side="left">
+        <button class="button button-clear" ng-click="myGoBack()">
+            <i class="ion-arrow-left-c custon_icon_back"></i>
+        </button>
+    </ion-nav-buttons>
     <ion-content>
+        <div class="list">
+            <div class="item item-divider">
+                Vos informations personnelles
+            </div>
+            <ion-item>
+                <h2>Nom prénom</h2>
+                <p>{{user.nom}} {{user.prenom}}</p>
+            </ion-item>
+            <ion-item>
+                <h2>Votre email</h2>
+                <p>{{user.email}}</p>
+            </ion-item>
+
+            <div class="item item-divider">
+                Paramètrage par défaut des notifications
+            </div>
+            <ion-toggle toggle-class="toggle-positive"
+                        ng-model="notifDefaut.checked"
+                        ng-checked="notifDefaut.checked"
+                        ng-change="notifDefautChange()">
+                <h2>Rappel des formations </h2>
+                <p>Notification 1h avant </p>
+            </ion-toggle>
+
+            <div class="item item-divider">
+                Deconnection
+            </div>
+            <ion-item class="item item-icon-left" ng-click="deconnection()">
+                <i class="icon ion-log-out"></i>
+                Se deconnecter
+            </ion-item>
+
+        </div>
 
     </ion-content>
 </ion-view>

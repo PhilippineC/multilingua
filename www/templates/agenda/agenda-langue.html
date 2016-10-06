@@ -1,4 +1,5 @@
-<ion-view view-title="Formations en {{langue.nom}}">
+<ion-view>
+    <ion-nav-title>Formations en {{langue.nom}}</ion-nav-title>
     <ion-content>
 
             <div class="item item-divider">
@@ -7,8 +8,9 @@
             <ion-toggle toggle-class="toggle-positive"
                         ng-repeat="date in dates"
                         ng-model="date.checked"
-                        ng-checked="item.checked">
-                <h2>  {{date.date}} à {{date.heure}}</h2>
+                        ng-checked="date.checked"
+                        ng-change="pushNotificationChange(date)">
+                <h2>  {{date.dateformat}} à {{date.heure}}</h2>
                 <p>Lieu : {{date.lieu}} </p>
             </ion-toggle>
 

@@ -1,4 +1,5 @@
-<ion-view view-title="{{langue.nom}}">
+<ion-view>
+    <ion-nav-title>Cours {{langue.nom}}</ion-nav-title>
     <ion-content>
 
         <ion-list>
@@ -7,9 +8,9 @@
                 <p>{{lecon.sousLibelle}}</p>
                 <i class="icon ion-chevron-right icon-accessory"></i>
                 <div class="buttons">
-                    <button ng-show="!lecon.audio" class="button button-icon icon ion-document-text custom-icon"></button>
-                    <button ng-show="lecon.audio" class="button button-icon icon ion-ios-musical-notes custom-icon"></button>
-                    <button ng-show="lecon.termine" class="button button-icon icon ion-checkmark-round custon_icon_mark"></button>
+                    <button ng-if="!lecon.audio" class="button button-icon icon ion-document-text custom-icon"></button>
+                    <button ng-if="lecon.audio" class="button button-icon icon ion-ios-musical-notes custom-icon"></button>
+                    <button ng-if="lecon.termine" class="button button-icon icon ion-checkmark-round custon_icon_mark"></button>
                 </div>
 
             </ion-item>

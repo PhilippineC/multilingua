@@ -1,4 +1,5 @@
-<ion-view view-title="{{lecon.libelle}}">
+<ion-view>
+    <ion-nav-title>{{lecon.libelle}}</ion-nav-title>
     <ion-content class="padding">
         <div class="list card">
             <div class="item item-title">
@@ -8,7 +9,7 @@
 
             <div class="item item-body">
                 <!-- Cas d'une leçon écrite sous forme d'accordéon à déplier -->
-                <div ng-show="{{!lecon.audio}}">
+                <div ng-show="!lecon.audio">
                     <p>Lisez votre leçon du jour et pratiquez avec les exercices !</p>
                     <ion-list>
                         <div ng-repeat="chapitre in chapitres">
@@ -19,7 +20,7 @@
                                     {{chapitre.titre}}
                             </ion-item>
                             <ion-item ng-show="isGroupShown(chapitre)">
-                                <p>{{chapitre.contenu}}</p>
+                                <p class="contenu_chapitre">{{chapitre.contenu}}</p>
                             </ion-item>
                         </div>
                     </ion-list>
@@ -27,7 +28,7 @@
                 </div>
 
                 <!-- Cas d'une leçon audio gérée avec médias -->
-                <div ng-show="{{lecon.audio}}">
+                <div ng-show="lecon.audio">
                     <p>Ecoutez votre leçon du jour et pratiquez avec les exercices !</p>
                     <div class="button-bar">
                         <a class="button icon ion-play button-positive" ng-click="playMedia()"></a>

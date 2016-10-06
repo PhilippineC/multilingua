@@ -26,6 +26,10 @@
     color : white;
 }
 
+.textcenter {
+    text-align: center;
+}
+
 /* Mise en forme de l'accordéon pour les cours écrits */
 
 .list .item.item-accordion {
@@ -78,4 +82,12 @@
 
 .erreur {
     color : red;
+}
+
+i.custon_icon_back.ion-arrow-left-c {
+    font-size : 1.5em;
+}
+
+p.contenu_chapitre {
+    margin-top : 0px;
 }

@@ -7,46 +7,62 @@ angular.module('starter.services', [])
 
 .factory('DATABASE', function($firebaseArray, $firebaseObject) {
   var ref = new Firebase("https://multilingua-d2319.firebaseio.com");
- /* var User = $firebaseObject.$extend({
-    LanguesDispo : function() {
-      return this.$getRecord;
-    }
-  });*/
+  var refLangues = new Firebase("https://multilingua-d2319.firebaseio.com/langues");
+  var refProfiles = new Firebase("https://multilingua-d2319.firebaseio.com/profiles");
+  var refResponsables = new Firebase("https://multilingua-d2319.firebaseio.com/responsables");
 
   return {
-  /*  getLanguesDispo : function(uid) {
-      var util = ref.child('profiles').child(uid);
-      var user = new User(util);
-      return user.LanguesDispo();
-    },*/
+    getLangues: function(orderparam) {
+      return $firebaseArray(refLangues.orderByChild(orderparam));
+    },
 
+    getResponsables : function() {
+      return $firebaseArray(refResponsables);
+    },
 
-    all: function(section, orderparam) {
-      var data = $firebaseArray(ref.child(section).orderByChild(orderparam));
-      return data;
+    getLangue : function(langueId) {
+      var data = refLangues.child(langueId);
+      return $firebaseObject(data);
+    },
+
+    getLecon : function(langueId, leconId) {
+      var data = refLangues.child(langueId).child('cours').child(leconId);
+      return $firebaseObject(data);
+    },
+
+    getRefCoursTerm : function(uid) {
+      return refProfiles.child(uid).child('coursTerm');
+    },
+
+    getRefNotifActive : function(uid) {
+      return refProfiles.child(uid).child('notifActive');
+    },
+
+    getRefNotifActiveDefaut : function(uid) {
+      return refProfiles.child(uid).child('notifActiveDefaut');
     },
 
     getDataUser : function(uid) {
-      var user = $firebaseObject(ref.child('profiles').child(uid));
-      return user;
+      return $firebaseObject(ref.child('profiles').child(uid));
      },
 
     getDataUserLanguesDispo : function(uid) {
-      var languesDispo = ref.child('profiles').child(uid).child('languesDispo');
-      return $firebaseArray(languesDispo);
+      return $firebaseArray(refProfiles.child(uid).child('languesDispo'));
     },
-
 
     getDataUserCoursTerm : function(uid) {
-      var data = ref.child('profiles').child(uid).child('coursTerm');
-      return $firebaseArray(data);
+      return $firebaseArray(refProfiles.child(uid).child('coursTerm'));
     },
 
+    getDataUserNotif : function(uid) {
+      var data = refProfiles.child(uid).child('notifActive');
+      return $firebaseArray(data);
+    },
 
     get: function(section, id) {
       var data = null;
       ref = new Firebase("https://multilingua-d2319.firebaseio.com"+"/" + section);
-      ref.once("value", function(snapshot) {
+      ref.on("value", function(snapshot) {
         snapshot.forEach(function(childSnapshot) {
           var childData = childSnapshot.val();
           if (childData.id == id) {

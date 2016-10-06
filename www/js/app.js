@@ -5,10 +5,15 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngCordova'])
+angular.module('starter', ['ionic','ionic.cloud', 'starter.controllers', 'starter.services', 'ngCordova'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
+    // Envoi une alerte dès qu'une notification est programmée ou envoyée ?
+    cordova.plugins.notification.local.on("schedule", function(notification) {
+      console.log("Notification: " + (notification.at));
+    });
+
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
@@ -19,6 +24,31 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
+    }
+  });
+})
+
+.config(function($ionicCloudProvider) {
+  $ionicCloudProvider.init({
+    "core": {
+      "app_id": "3c973b0d"
+    },
+    "push": {
+      "sender_id": "685242094773",
+      "debug" : true,
+      "pluginConfig": {
+        "ios": {
+          "badge": true,
+          "sound": true
+        },
+        "android": {
+          "iconColor": "#343434"
+        }
+      }
+    },
+    "message": {
+      "title" : "Formations!",
+      "text" : "texte a personnaliser"
     }
   });
 })
@@ -132,6 +162,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('login');
+  $urlRouterProvider.otherwise('tab/cours');
 
 });

@@ -4,6 +4,7 @@
   "description": "Multilingua: An Ionic project",
   "dependencies": {
     "@angular/core": "^2.0.1",
+    "@ionic/cloud": "^0.10.0",
     "@ionic/cloud-angular": "^0.5.2",
     "firebase": "^3.4.0",
     "gulp": "^3.5.6",
