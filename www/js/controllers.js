@@ -1,9 +1,10 @@
 angular.module('starter.controllers', ['firebase', 'ionic.cloud'])
 
-.controller('CoursCtrl', function($scope, DATABASE, $state) {
+.controller('CoursCtrl', function($scope, DATABASE, $state, $ionicPlatform) {
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       console.log(user);
+      console.log(firebase.auth().currentUser);
     /*  var user = DATABASE.getDataUser(user.uid);*/
       var langues = DATABASE.getLangues('id');
       langues.$loaded(function() {
@@ -13,7 +14,15 @@ angular.module('starter.controllers', ['firebase', 'ionic.cloud'])
           angular.forEach(languesDispo, function(langueDispo) {
             angular.forEach(langues, function(langue) {
               if (langueDispo.$value == langue.id) {
-                $scope.langues.push(langue);
+                var storage = firebase.storage();
+                var drapeauReference = storage.refFromURL('gs://multilingua-d2319.appspot.com/drapeau/' + langue.nom + '.jpg');
+                drapeauReference.getDownloadURL().then(function (src) {
+                  $ionicPlatform.ready(function () {
+                    langue.drapeau = src;
+                    $scope.langues.push(langue);
+                    $scope.$apply();
+                  })
+                })
               }
             })
           });
@@ -79,7 +88,7 @@ angular.module('starter.controllers', ['firebase', 'ionic.cloud'])
           /* Gestion des médias */
           if (lecon.audio) {
             var storage = firebase.storage();
-            var audioReference = storage.refFromURL('gs://multilingua-d2319.appspot.com/Cours' + lecon.id + '.mp3');
+            var audioReference = storage.refFromURL('gs://multilingua-d2319.appspot.com/cours_audio/Cours' + lecon.id + '.mp3');
             audioReference.getDownloadURL().then(function (src) {
               $ionicPlatform.ready(function () {
                 var media = $cordovaMedia.newMedia(src);
@@ -191,17 +200,19 @@ angular.module('starter.controllers', ['firebase', 'ionic.cloud'])
                                 i++;
                               });
                             }
-                            var leconAlea = DATABASE.getData($stateParams.langueId, leconAleaId);
-                            console.log(leconAlea);
-                            var exAleaId = Math.floor(Math.random() * (Object.keys(leconAlea.exercices)).length) + 1;
-                            console.log(exAleaId);
-                            $state.go("tab.cours-exercice", {
-                              langueId: langue.id,
-                              leconId: leconAleaId,
-                              exerciceId: exAleaId,
-                              leconEnCoursId: leconEnCours.id,
-                              exEnCours: exEnCours
-                            });
+                            var leconAlea = DATABASE.getLecon($stateParams.langueId, leconAleaId);
+                            leconAlea.$loaded(function() {
+                              console.log(leconAlea);
+                              var exAleaId = Math.floor(Math.random() * (Object.keys(leconAlea.exercices)).length) + 1;
+                              console.log(exAleaId);
+                              $state.go("tab.cours-exercice", {
+                                langueId: langue.id,
+                                leconId: leconAleaId,
+                                exerciceId: exAleaId,
+                                leconEnCoursId: leconEnCours.id,
+                                exEnCours: exEnCours
+                              });
+                            })
                           }
                         });
                       }
@@ -255,7 +266,7 @@ angular.module('starter.controllers', ['firebase', 'ionic.cloud'])
   })
 })
 
-.controller('AgendaCtrl', function($scope, DATABASE, $state) {
+.controller('AgendaCtrl', function($scope, DATABASE, $state, $ionicPlatform) {
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       var langues = DATABASE.getLangues('id');
@@ -266,7 +277,15 @@ angular.module('starter.controllers', ['firebase', 'ionic.cloud'])
           angular.forEach(languesDispo, function(langueDispo) {
             angular.forEach(langues, function(langue) {
               if (langueDispo.$value == langue.id) {
-                $scope.langues.push(langue);
+                var storage = firebase.storage();
+                var drapeauReference = storage.refFromURL('gs://multilingua-d2319.appspot.com/drapeau/' + langue.nom + '.jpg');
+                drapeauReference.getDownloadURL().then(function (src) {
+                  $ionicPlatform.ready(function () {
+                    langue.drapeau = src;
+                    $scope.langues.push(langue);
+                    $scope.$apply();
+                  })
+                })
               }
             })
           });
@@ -282,32 +301,35 @@ angular.module('starter.controllers', ['firebase', 'ionic.cloud'])
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
       var ref = DATABASE.getRefNotifActive(user.uid);
-      ref.once('value', function (snapshot) {
+      ref.on('value', function (snapshot) {
         var langue = DATABASE.getLangue($stateParams.langueId);
         langue.$loaded(function () {
           $scope.langue = langue;
-          var dates = langue.datesFormation;
-          $scope.dates = [];
-          angular.forEach(dates, function (date_en_cours) { // ou faire une boucle sur $scope.dates
-            date_en_cours.checked = false;
-            var date_format = new Date(date_en_cours.date);
-            var options = {year: "numeric", month: "long", day: "numeric"};
-            date_en_cours.dateformat = date_format.toLocaleDateString("fr-FR", options);
-            date_en_cours.heure = date_format.toLocaleTimeString("fr-FR");
-            if (date_format >= new Date()) {
-              if (snapshot.val() == null) { // aucune notif active
-                date_en_cours.checked = false;
+          var dates = DATABASE.getDatesFormation($stateParams.langueId);
+          dates.$loaded(function() {
+            console.log(dates);
+            $scope.dates = [];
+            angular.forEach(dates, function (date_en_cours) { // ou faire une boucle sur $scope.dates
+              date_en_cours.checked = false;
+              var date_format = new Date(date_en_cours.date);
+              var options = {year: "numeric", month: "long", day: "numeric"};
+              date_en_cours.dateformat = date_format.toLocaleDateString("fr-FR", options);
+              date_en_cours.heure = date_format.toLocaleTimeString("fr-FR");
+              if (date_format >= new Date()) {
+                if (snapshot.val() == null) { // aucune notif active
+                  date_en_cours.checked = false;
+                }
+                else {
+                  snapshot.forEach(function (childSnapshot) {
+                    if (date_en_cours.id == childSnapshot.val()) {
+                      date_en_cours.checked = true;
+                    }
+                  })
+                }
+                $scope.dates.push(date_en_cours);
               }
-              else {
-                snapshot.forEach(function (childSnapshot) {
-                  if (date_en_cours.id == childSnapshot.val()) {
-                    date_en_cours.checked = true;
-                  }
-                })
-              }
-              $scope.dates.push(date_en_cours);
-            }
-          });
+            });
+          })
         });
 
         $scope.pushNotificationChange = function (date_en_cours) {
@@ -359,7 +381,23 @@ angular.module('starter.controllers', ['firebase', 'ionic.cloud'])
 .controller('ContactCtrl', function($scope,DATABASE, $cordovaEmailComposer, $ionicPlatform, $state) {
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
-      $scope.responsables = DATABASE.getResponsables();
+      var responsables = DATABASE.getResponsables();
+      responsables.$loaded(function() {
+        $scope.responsables = [];
+        angular.forEach(responsables, function (responsable) {
+          var storage = firebase.storage();
+          var avatarReference = storage.refFromURL('gs://multilingua-d2319.appspot.com/avatar/' + responsable.img);
+           avatarReference.getDownloadURL().then(function (src) {
+             $ionicPlatform.ready(function () {
+               responsable.src = src;
+               $scope.responsables.push(responsable);
+               $scope.$apply();
+             })
+           }).catch(function (error) {
+             console.log(error);
+           });
+          })
+        });
 
       /* gestion de l'appel */
       $scope.phone = function(num){
@@ -393,10 +431,19 @@ angular.module('starter.controllers', ['firebase', 'ionic.cloud'])
   })
 })
 
-.controller('LoginCtrl', function($scope, $state) {
+.controller('LoginCtrl', function($scope, $state, $ionicPlatform) {
+  var storage = firebase.storage();
+  var logoReference = storage.refFromURL('gs://multilingua-d2319.appspot.com/logo/logo.jpg');
+  logoReference.getDownloadURL().then(function (src) {
+    $ionicPlatform.ready(function () {
+      $scope.logo = src;
+      $scope.$apply();
+    })
+  });
+
   $scope.login = function() {
     var email = "a@alll.fr";
-  /*  var email = $scope.data.email;*/
+    /*  var email = $scope.data.email;*/
     var password = "000000";
     /*  var password = $scope.data.password;*/
     firebase.auth().signInWithEmailAndPassword(email, password).then(function (user) {
@@ -480,14 +527,15 @@ angular.module('starter.controllers', ['firebase', 'ionic.cloud'])
       $scope.deconnection = function() {
         $ionicLoading.show({template:'Deconnection....'});
       /*  $localstorage.set('loggin_state', '');*/
-        firebase.auth().signOut();
-        $timeout(function () {
-          $ionicLoading.hide();
-          $ionicHistory.clearCache();
-          $ionicHistory.clearHistory();
-          $ionicHistory.nextViewOptions({ disableBack: false, historyRoot: true });
-          $state.go("login");
-        }, 2000);
+        firebase.auth().signOut().then(function() {
+          console.log('Sign-out success');
+          $timeout(function () {
+            $ionicLoading.hide();
+            $ionicHistory.clearCache();
+            $ionicHistory.clearHistory();
+            $state.go("login");
+          }, 2000);
+        });
       };
 
       $scope.myGoBack = function() {

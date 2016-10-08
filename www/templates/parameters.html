@@ -1,9 +1,11 @@
 <ion-view view-title="Paramètres du compte" animation="slide-right">
-    <ion-nav-buttons side="left">
-        <button class="button button-clear" ng-click="myGoBack()">
-            <i class="ion-arrow-left-c custon_icon_back"></i>
-        </button>
-    </ion-nav-buttons>
+    <ion-nav-bar class="bar-positive" align-title="center">
+        <ion-nav-buttons side="left">
+            <button class="button button-clear" ng-click="myGoBack()">
+                <i class="ion-arrow-left-c custon_icon_back"></i>
+            </button>
+        </ion-nav-buttons>
+    </ion-nav-bar>
     <ion-content>
         <div class="list">
             <div class="item item-divider">
@@ -30,11 +32,11 @@
             </ion-toggle>
 
             <div class="item item-divider">
-                Deconnection
+                Déconnection
             </div>
             <ion-item class="item item-icon-left" ng-click="deconnection()">
                 <i class="icon ion-log-out"></i>
-                Se deconnecter
+                Se déconnecter
             </ion-item>
 
         </div>

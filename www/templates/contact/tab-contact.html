@@ -2,7 +2,7 @@
     <ion-content>
         <ion-list>
             <ion-item ng-repeat="responsable in responsables" class="item item-avatar item-icon-right">
-                <img ng-src="{{responsable.img}}">
+                <img ng-src="{{responsable.src}}">
                 <h2>{{responsable.nom}} {{responsable.prenom}}</h2>
                 <p>{{responsable.fonction}}</p>
                 <i class="icon ion-ios-telephone custom-icon-phone" ng-click="phone({{responsable.tel}})"></i>

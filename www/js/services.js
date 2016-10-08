@@ -16,6 +16,11 @@ angular.module('starter.services', [])
       return $firebaseArray(refLangues.orderByChild(orderparam));
     },
 
+    getDatesFormation: function(langueId) {
+      var data = refLangues.child(langueId).child('datesFormation').orderByChild('date');
+      return $firebaseArray(data);
+    },
+
     getResponsables : function() {
       return $firebaseArray(refResponsables);
     },
@@ -57,9 +62,9 @@ angular.module('starter.services', [])
     getDataUserNotif : function(uid) {
       var data = refProfiles.child(uid).child('notifActive');
       return $firebaseArray(data);
-    },
+    }
 
-    get: function(section, id) {
+  /*  get: function(section, id) {
       var data = null;
       ref = new Firebase("https://multilingua-d2319.firebaseio.com"+"/" + section);
       ref.on("value", function(snapshot) {
@@ -91,7 +96,7 @@ angular.module('starter.services', [])
         })
       });
       return data;
-    }
+    }*/
   };
 
 
