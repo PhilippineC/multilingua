@@ -1,6 +1,6 @@
 {
   "responsables" : {
-    "resp1": {
+    "Floppy_Benoit": {
       "nom": "Floppy",
       "prenom": "Benoit",
       "fonction": "Responsable Section Anglais",
@@ -8,7 +8,7 @@
       "mail": "floppy.benoit",
       "img": "ben.png"
     },
-    "resp2": {
+    "Rodriguez_Adam": {
       "nom": "Rodriguez",
       "prenom": "Adam",
       "fonction": "Responsable Section Espagnol",
@@ -16,7 +16,7 @@
       "mail": "rodriguez.adam",
       "img": "adam.jpg"
     },
-    "resp3": {
+    "Heinz_Maxime": {
       "nom": "Heinz",
       "prenom": "Maxime",
       "fonction": "Responsable Section Allemand",
@@ -24,7 +24,7 @@
       "mail": "heinz.maxime",
       "img": "max.png"
     },
-    "resp4": {
+    "Marinez_Mickael": {
       "nom": "Marinez",
       "prenom": "Mickael",
       "fonction": "Responsable Section Portuguais",
@@ -53,32 +53,32 @@
       "datesFormation" : {
         "date1" : {
           "id" : 0,
-          "date" : "2016-10-05T12:00:00",
+          "date" : "2016-10-05T12:00",
           "lieu" : "Salle 1"
         },
         "date2" : {
           "id" : 1,
-          "date" : "2016-10-07T14:30:00",
+          "date" : "2016-10-07T14:30",
           "lieu" : "Salle 25"
         },
         "date3" : {
           "id" : 2,
-          "date" : "2016-10-08T16:00:00",
+          "date" : "2016-10-08T16:00",
           "lieu" : "Salle 5"
         },
         "date4" : {
           "id" : 3,
-          "date" : "2016-10-09T16:05:00",
+          "date" : "2016-10-09T16:05",
           "lieu" : "Salle 5"
         },
         "date5" : {
           "id" : 4,
-          "date" : "2016-10-10T16:00:00",
+          "date" : "2016-10-10T16:00",
           "lieu" : "Salle 5"
         },
         "date10" : {
           "id" : 10,
-          "date" : "2016-10-20T12:00:00",
+          "date" : "2016-10-20T12:00",
           "lieu" : "Salle 5"
         }
       },
@@ -329,27 +329,27 @@
       "datesFormation" : {
         "date5" : {
           "id" : 5,
-          "date" : "2016-10-10T12:00:00",
+          "date" : "2016-10-10T12:00",
           "lieu" : "Salle 1"
         },
         "date6" : {
           "id" : 6,
-          "date" : "2016-10-15T14:30:00",
+          "date" : "2016-10-15T14:30",
           "lieu" : "Salle 2"
         },
         "date7" : {
           "id" : 7,
-          "date" : "2016-10-20T16:00:00",
+          "date" : "2016-10-20T16:00",
           "lieu" : "Salle 3"
         },
         "date8" : {
           "id" : 8,
-          "date" : "2016-10-25T16:05:00",
+          "date" : "2016-10-25T16:05",
           "lieu" : "Salle 5"
         },
         "date9" : {
           "id" : 9,
-          "date" : "2016-10-30T16:00:00",
+          "date" : "2016-10-30T16:00",
           "lieu" : "Salle 7"
         }
       }
