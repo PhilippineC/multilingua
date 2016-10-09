@@ -95,17 +95,7 @@
               "enonce" : "Selectionnez la bonne réponse :",
               "phrase_deb" : "Sarah",
               "phrase_fin" : "big.",
-              "propositions" : {
-                "prop1" : {
-                  "libelle": "am"
-                },
-                "prop2" : {
-                  "libelle": "are"
-                },
-                "prop3" : {
-                  "libelle": "is"
-                }
-              },
+              "propositions" : ["am", "are", "is"],
               "reponse" : "is"
             },
             "ex2" : {
@@ -113,17 +103,7 @@
               "enonce" : "Selectionnez la bonne réponse :",
               "phrase_deb" : "Peter and Sarah",
               "phrase_fin" : "big.",
-              "propositions" : {
-                "prop1" : {
-                  "libelle": "am"
-                },
-                "prop2" : {
-                  "libelle": "is"
-                },
-                "prop3" : {
-                  "libelle": "are"
-                }
-              },
+              "propositions" : ["am", "is", "are"],
               "reponse" : "are"
             },
             "ex3" : {
@@ -131,17 +111,7 @@
               "enonce" : "Selectionnez la bonne réponse :",
               "phrase_deb" : "You",
               "phrase_fin" : "small.",
-              "propositions" : {
-                "prop1" : {
-                  "libelle": "am"
-                },
-                "prop2" : {
-                  "libelle": "are"
-                },
-                "prop3" : {
-                  "libelle": "is"
-                }
-              },
+              "propositions" : ["am", "are", "is"],
               "reponse" : "are"
             },
             "ex4" : {
@@ -149,17 +119,7 @@
               "enonce" : "Selectionnez la bonne réponse :",
               "phrase_deb" : "I",
               "phrase_fin" : "beautiful.",
-              "propositions" : {
-                "prop1" : {
-                  "libelle": "am"
-                },
-                "prop2" : {
-                  "libelle": "are"
-                },
-                "prop3" : {
-                  "libelle": "is"
-                }
-              },
+              "propositions" : ["am", "are", "is"],
               "reponse" : "am"
             },
             "ex5" : {
@@ -167,17 +127,7 @@
               "enonce" : "Selectionnez la bonne réponse :",
               "phrase_deb" : "Peter and I",
               "phrase_fin" : "stupids.",
-              "propositions" : {
-                "prop1" : {
-                  "libelle": "am"
-                },
-                "prop2" : {
-                  "libelle": "is"
-                 },
-                "prop3" : {
-                  "libelle": "are"
-                }
-              },
+              "propositions" : ["am", "are", "is"],
               "reponse" : "are"
             }
           }
@@ -194,17 +144,7 @@
               "enonce": "Selectionnez la bonne réponse :",
               "phrase_deb": "I must go, that's what John",
               "phrase_fin": ".",
-              "propositions": {
-                "prop1": {
-                  "libelle": "said"
-                },
-                "prop2": {
-                  "libelle": "told"
-                },
-                "prop3": {
-                  "libelle": "spoke"
-                }
-              },
+              "propositions": ["said", "told", "spoke"],
               "reponse": "said"
             },
             "ex2" : {
@@ -212,17 +152,7 @@
               "enonce" : "Selectionnez la bonne réponse :",
               "phrase_deb" : "",
               "phrase_fin" : "he is over sixty years old, he still looks young.",
-              "propositions" : {
-                "prop1" : {
-                  "libelle": "Though"
-                },
-                "prop2" : {
-                  "libelle": "As"
-                },
-                "prop3" : {
-                  "libelle": "However"
-                }
-              },
+              "propositions" : ["Though", "As", "However"],
               "reponse" : "Though"
             },
             "ex3" : {
@@ -230,17 +160,7 @@
               "enonce" : "Selectionnez la bonne réponse :",
               "phrase_deb" : "Tom wants to become",
               "phrase_fin" : "an actor or a dentist.",
-              "propositions" : {
-                "prop1" : {
-                  "libelle": "neither"
-                },
-                "prop2" : {
-                  "libelle": "either"
-                },
-                "prop3" : {
-                  "libelle": "not"
-                }
-              },
+              "propositions" : ["neither", "either", "not"],
               "reponse" : "either"
             },
             "ex4" : {
@@ -248,17 +168,7 @@
               "enonce" : "Selectionnez la bonne réponse :",
               "phrase_deb" : "My brother Stuart wants",
               "phrase_fin" : "go swimming with him.",
-              "propositions" : {
-                "prop1" : {
-                  "libelle": "I"
-                },
-                "prop2" : {
-                  "libelle": "me to"
-                },
-                "prop3" : {
-                  "libelle": "me"
-                }
-              },
+              "propositions" : ["I", "me too", "me"],
               "reponse" : "me to"
             },
             "ex5" : {
@@ -266,14 +176,7 @@
               "enonce" : "Selectionnez la bonne réponse :",
               "phrase_deb" : "It will be",
               "phrase_fin" : "fun to go camping with Bob. ",
-              "propositions" : {
-                "prop1" : {
-                  "libelle": "a lot of"
-                },
-                "prop2" : {
-                  "libelle": "very many"
-                }
-              },
+              "propositions" : ["a lot of", "very many"],
               "reponse" : "a lot of"
             }
           }
@@ -307,17 +210,7 @@
               "enonce" : "Selectionnez la bonne réponse :",
               "phrase_deb" : "Hey John,",
               "phrase_fin" : "you come to the match this afternoon ?",
-              "propositions" : {
-                "prop1" : {
-                  "libelle": "can"
-                },
-                "prop2" : {
-                  "libelle": "must"
-                },
-                "prop3" : {
-                  "libelle": "may"
-                }
-              },
+              "propositions" : ["can", "must", "may"],
               "reponse" : "can"
             },
             "ex2" : {
@@ -325,17 +218,7 @@
               "enonce" : "Selectionnez la bonne réponse :",
               "phrase_deb" : "I'm sorry. I",
               "phrase_fin" : "wash my father's car.",
-              "propositions" : {
-                "prop1" : {
-                  "libelle": "can"
-                },
-                "prop2" : {
-                  "libelle": "must"
-                },
-                "prop3" : {
-                  "libelle": "may"
-                }
-              },
+              "propositions" : ["can", "must", "may"],
               "reponse" : "must"
             },
             "ex3" : {
@@ -343,17 +226,7 @@
               "enonce" : "Selectionnez la bonne réponse :",
               "phrase_deb" : "But it's raining! Don't waste your time: you",
               "phrase_fin" : "to wash it! It will be cleaned by the rain!",
-              "propositions" : {
-                "prop1" : {
-                  "libelle": "don't have"
-                },
-                "prop2" : {
-                  "libelle": "can't"
-                },
-                "prop3" : {
-                  "libelle": "may"
-                }
-              },
+              "propositions" : ["don't have", "can't", "may"],
               "reponse" : "don't have"
             },
             "ex4" : {
@@ -361,17 +234,7 @@
               "enonce" : "Selectionnez la bonne réponse :",
               "phrase_deb" : "I know, but my parents say the rain",
               "phrase_fin" : "stop soon.",
-              "propositions" : {
-                "prop1" : {
-                  "libelle": "don't have to"
-                },
-                "prop2" : {
-                  "libelle": "can't"
-                },
-                "prop3" : {
-                  "libelle": "can"
-                }
-              },
+              "propositions" : ["don't have", "can't", "can"],
               "reponse" : "can"
             },
             "ex5" : {
@@ -379,17 +242,7 @@
               "enonce" : "Selectionnez la bonne réponse :",
               "phrase_deb" : "I can't go out with you tonight because I",
               "phrase_fin" : "go to my grandmother's birthday party.",
-              "propositions" : {
-                "prop1" : {
-                  "libelle": "have to"
-                },
-                "prop2" : {
-                  "libelle": "can't"
-                },
-                "prop3" : {
-                  "libelle": "can"
-                }
-              },
+              "propositions" : ["have to", "can't", "can"],
               "reponse" : "have to"
             }
           }
@@ -423,14 +276,7 @@
               "enonce" : "Selectionnez la bonne réponse :",
               "phrase_deb" : "I am",
               "phrase_fin" : ".",
-              "propositions" : {
-                "prop1" : {
-                  "libelle": "singging"
-                },
-                "prop2" : {
-                  "libelle": "singing"
-                }
-              },
+              "propositions" : ["singging", "singing"],
               "reponse" : "singing"
             },
             "ex2" : {
@@ -438,17 +284,7 @@
               "enonce" : "Selectionnez la bonne réponse :",
               "phrase_deb" : "You",
               "phrase_fin" : "football.",
-              "propositions" : {
-                "prop1" : {
-                  "libelle": "are playing"
-                },
-                "prop2" : {
-                  "libelle": "are plaing"
-                },
-                "prop3" : {
-                  "libelle": "plaeing"
-                }
-              },
+              "propositions" : ["are playing", "are plaing", "plaeing"],
               "reponse" : "are playing"
             },
             "ex3" : {
@@ -456,14 +292,7 @@
               "enonce" : "Selectionnez la bonne réponse :",
               "phrase_deb" : "She",
               "phrase_fin" : "her umbrella.",
-              "propositions" : {
-                "prop1" : {
-                  "libelle": "are taking"
-                },
-                "prop2" : {
-                  "libelle": "is taking"
-                }
-              },
+              "propositions" : ["are taking", "is taking"],
               "reponse" : "is taking"
             },
             "ex4" : {
@@ -471,14 +300,7 @@
               "enonce" : "Selectionnez la bonne réponse :",
               "phrase_deb" : "They",
               "phrase_fin" : ".",
-              "propositions" : {
-                "prop1" : {
-                  "libelle": "are eating"
-                },
-                "prop2" : {
-                  "libelle": "are eateing"
-                }
-              },
+              "propositions" : ["are eating", "are eateing"],
               "reponse" : "are eating"
             },
             "ex5" : {
@@ -486,14 +308,7 @@
               "enonce" : "Selectionnez la bonne réponse :",
               "phrase_deb" : "She",
               "phrase_fin" : "on a chair.",
-              "propositions" : {
-                "prop1" : {
-                  "libelle": "is siting"
-                },
-                "prop2" : {
-                  "libelle": "is sitting"
-                }
-              },
+              "propositions" : ["is siting", "is sitting"],
               "reponse" : "is sitting"
             }
           }

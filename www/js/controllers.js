@@ -147,11 +147,15 @@ angular.module('starter.controllers', ['firebase', 'ionic.cloud'])
               }
             });
             var propositions = exercice.propositions;
-            angular.forEach(propositions, function(proposition) {
+            $scope.propositions = [];
+            for (var i = 0; i<propositions.length;i++) {
+              var proposition = {};
+              proposition.libelle = propositions[i];
               proposition.success = false;
               proposition.wrong = false;
-            });
-            $scope.propositions = propositions;
+              $scope.propositions.push(proposition);
+            }
+
             $scope.clickReponse = function (proposition) {
               if (proposition.libelle == exercice.reponse) {
                 proposition.success = true;
