@@ -1,33 +1,42 @@
 angular.module('starter.controllers', ['firebase', 'ionic.cloud'])
 
-.controller('CoursCtrl', function($scope, DATABASE, $state, $ionicPlatform) {
+.controller('CoursCtrl', function($scope, DATABASE, $state, $ionicPlatform, $ionicLoading) {
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       console.log(user);
       console.log(firebase.auth().currentUser);
     /*  var user = DATABASE.getDataUser(user.uid);*/
       var langues = DATABASE.getLangues('id');
-      langues.$loaded(function() {
-        var languesDispo = DATABASE.getDataUserLanguesDispo(user.uid);
-        languesDispo.$loaded(function() {
-          $scope.langues = [];
-          angular.forEach(languesDispo, function(langueDispo) {
-            angular.forEach(langues, function(langue) {
-              if (langueDispo.$value == langue.id) {
-                var storage = firebase.storage();
-                var drapeauReference = storage.refFromURL('gs://multilingua-d2319.appspot.com/drapeau/' + langue.nom + '.jpg');
-                drapeauReference.getDownloadURL().then(function (src) {
-                  $ionicPlatform.ready(function () {
-                    langue.drapeau = src;
-                    $scope.langues.push(langue);
-                    $scope.$apply();
-                  })
-                })
-              }
-            })
-          });
-        })
+      $ionicLoading.show({
+        template: '<ion-spinner icon="ios"></ion-spinner>',
+        duration : 1000
       });
+      langues.$loaded(function() {
+          var languesDispo = DATABASE.getDataUserLanguesDispo(user.uid);
+          languesDispo.$loaded(function() {
+            $scope.langues = [];
+            angular.forEach(languesDispo, function(langueDispo) {
+              angular.forEach(langues, function(langue) {
+                if (langueDispo.$value == langue.id) {
+                  var storage = firebase.storage();
+                  var drapeauReference = storage.refFromURL('gs://multilingua-d2319.appspot.com/drapeau/' + langue.nom + '.jpg');
+                  drapeauReference.getDownloadURL().then(function (src) {
+                    $ionicPlatform.ready(function () {
+                      var langueTemp = {};
+                      langueTemp = langue;
+                      langueTemp.drapeau = src;
+                      console.log(langueTemp);
+                      /* langue.drapeau = src;*/
+                      $scope.langues.push(langueTemp);
+                      console.log($scope.langues);
+                      $scope.$apply();
+                    })
+                  });
+                }
+              })
+            });
+          })
+        });
    } else {
       $state.go("login");
     }
@@ -529,7 +538,7 @@ angular.module('starter.controllers', ['firebase', 'ionic.cloud'])
         });
       });
       $scope.deconnection = function() {
-        $ionicLoading.show({template:'Deconnection....'});
+        $ionicLoading.show({template:'Déconnection....'});
       /*  $localstorage.set('loggin_state', '');*/
         firebase.auth().signOut().then(function() {
           console.log('Sign-out success');

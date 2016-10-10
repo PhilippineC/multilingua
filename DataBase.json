@@ -39,8 +39,6 @@
       "prenom" : "Emilie",
       "email" : "emilie.durand@gmail.com",
       "languesDispo": [0,2],
-      "coursTerm":  [],
-      "notifActive": [],
       "notifActiveDefaut" : false
     }
   },
