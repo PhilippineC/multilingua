@@ -47,6 +47,13 @@
       "email" : "utilisateur2@mail.com",
       "languesDispo": [0,1,2,3],
       "notifActiveDefaut" : false
+    },
+    "BpzXWQTzApW9gzduxfpisTkpUep1" : {
+      "nom" : "Durand",
+      "prenom" : "Emilie",
+      "email" : "emilie@gmail.com",
+      "languesDispo": [0,1],
+      "notifActiveDefaut" : false
     }
   },
   "langues" : {
