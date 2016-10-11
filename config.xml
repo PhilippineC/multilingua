@@ -7,7 +7,7 @@
   <author email="philippine.chombart@gmail.com" href="http://www.philiweb.net/">
       Philippine Chombart
     </author>
-  <content src="index.html"/>
+  <content src="http://192.168.0.46:8100" original-src="index.html"/>
   <access origin="*"/>
   <access launch-external="yes" origin="tel:*"/>
   <preference name="webviewbounce" value="false"/>

@@ -345,7 +345,7 @@ angular.module('starter.controllers', ['firebase', 'ionic.cloud'])
               var date_format = new Date(date_en_cours.date);
               var options = {year: "numeric", month: "long", day: "numeric"};
               date_en_cours.dateformat = date_format.toLocaleDateString("fr-FR", options);
-              date_en_cours.heure = date_format.toLocaleTimeString("fr-FR");
+              date_en_cours.heure = date_format.toLocaleTimeString("fr-FR" , {hour: "2-digit", minute: "2-digit"});
               if (date_format >= new Date()) {
                 if (snapshot.val() == null) { // aucune notif active
                   date_en_cours.checked = false;
@@ -394,7 +394,7 @@ angular.module('starter.controllers', ['firebase', 'ionic.cloud'])
               console.log('date de formation moins 1h :' + new Date(dateFormation - 3600 * 1000));
               cordova.plugins.notification.local.schedule({
                 id: date_en_cours.id,
-                text: 'Rappel : formation en ' + $scope.langue.nom + ' dans 1h en ' + date_en_cours.lieu + '.',
+                text: 'Rappel formation : ' + $scope.langue.nom + ' à ' + date_en_cours.heure + ' en ' + date_en_cours.lieu + '.',
                 at: new Date(dateFormation - 3600 * 1000) // On retire une heure*/
               })
             }

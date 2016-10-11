@@ -51,17 +51,17 @@
       "datesFormation" : {
         "date1" : {
           "id" : 0,
-          "date" : "2016-10-05T12:00",
+          "date" : "2016-10-11T14:00",
           "lieu" : "Salle 1"
         },
         "date2" : {
           "id" : 1,
-          "date" : "2016-10-07T14:30",
+          "date" : "2016-10-11T15:00",
           "lieu" : "Salle 25"
         },
         "date3" : {
           "id" : 2,
-          "date" : "2016-10-08T16:00",
+          "date" : "2016-10-11T14:30",
           "lieu" : "Salle 5"
         },
         "date4" : {
