@@ -18,11 +18,9 @@ angular.module('starter.controllers', ['firebase', 'ionic.cloud'])
             angular.forEach(languesDispo, function(langueDispo) {
               angular.forEach(langues, function(langue) {
                 if (langueDispo.$value == langue.id) {
-                  console.log(langueDispo.$value);
                   var storage = firebase.storage();
                   var drapeauReference = storage.refFromURL('gs://multilingua-d2319.appspot.com/drapeau/' + langue.nom + '.jpg');
                   drapeauReference.getDownloadURL().then(function (src) {
-                    console.log(src);
                     $ionicPlatform.ready(function () {
                       langue.drapeau = src;
                       $scope.langues.push(langue);
@@ -33,8 +31,7 @@ angular.module('starter.controllers', ['firebase', 'ionic.cloud'])
                           return -1;
                         else return 0;
                       });
-                      console.log($scope.langues);
-                      $scope.$apply();
+                       $scope.$apply();
                     })
                   }).catch(function (error) {
                     console.log(error)
@@ -139,7 +136,6 @@ angular.module('starter.controllers', ['firebase', 'ionic.cloud'])
 .controller('CoursExerciceCtrl', function($scope, DATABASE, $stateParams, $timeout, $state, CONSTANTES) {
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
-      console.log($stateParams);
       var exercice = null;
       var langue = DATABASE.getLangue($stateParams.langueId);
       langue.$loaded(function() {
@@ -152,8 +148,6 @@ angular.module('starter.controllers', ['firebase', 'ionic.cloud'])
             $scope.leconEnCours = leconEnCours;
             $scope.exNum = parseInt($stateParams.exEnCours);
             var exercices = lecon.exercices;
-            console.log(exercices);
-
             angular.forEach(exercices, function (exercice_en_cours) {
               if (exercice_en_cours.id == $stateParams.exerciceId) {
                 exercice = exercice_en_cours;
@@ -195,9 +189,7 @@ angular.module('starter.controllers', ['firebase', 'ionic.cloud'])
                        });
                       }
                       else if (exEnCours > CONSTANTES.NBEXS) { //on rajoute 3 ex cherché aléatoirement dans les lecons déjà terminées
-                        console.log(exEnCours);
                         ref.once('value', function (snapshot) {
-                          console.log(snapshot.val());
                           if (snapshot.val() == null) { // dans le cas où c'est la première leçon terminée on s'arrête là
                             var newLeconTerm = ref.push();
                             newLeconTerm.set(leconEnCours.id);
@@ -206,23 +198,18 @@ angular.module('starter.controllers', ['firebase', 'ionic.cloud'])
                           else {
                             var leconAleaId = leconEnCours.id;
                             while( leconAleaId == leconEnCours.id) {
-                              console.log(Object.keys(snapshot.val()).length);
                               var alea = Math.floor(Math.random() * Object.keys(snapshot.val()).length);
-                              console.log(alea);
                               var i = 0;
                               snapshot.forEach(function (childSnapshot) {
                                 if (i == alea) {
                                   leconAleaId = childSnapshot.val();
-                                  console.log(leconAleaId);
                                 }
                                 i++;
                               });
                             }
                             var leconAlea = DATABASE.getLecon($stateParams.langueId, leconAleaId);
                             leconAlea.$loaded(function() {
-                              console.log(leconAlea);
                               var exAleaId = Math.floor(Math.random() * (Object.keys(leconAlea.exercices)).length) + 1;
-                              console.log(exAleaId);
                               $state.go("tab.cours-exercice", {
                                 langueId: langue.id,
                                 leconId: leconAleaId,
@@ -338,7 +325,6 @@ angular.module('starter.controllers', ['firebase', 'ionic.cloud'])
           $scope.langue = langue;
           var dates = DATABASE.getDatesFormation($stateParams.langueId);
           dates.$loaded(function() {
-            console.log(dates);
             $scope.dates = [];
             angular.forEach(dates, function (date_en_cours) { // ou faire une boucle sur $scope.dates
               date_en_cours.checked = false;
@@ -364,7 +350,6 @@ angular.module('starter.controllers', ['firebase', 'ionic.cloud'])
         });
 
         $scope.pushNotificationChange = function (date_en_cours) {
-          console.log(date_en_cours);
           var suite = true;
           var ref = DATABASE.getRefNotifActive(user.uid);
           ref.once('value', function (snapshot) {
@@ -379,7 +364,6 @@ angular.module('starter.controllers', ['firebase', 'ionic.cloud'])
                   if (dataSnapshot.val() == date_en_cours.id) {
                     ref.child(dataSnapshot.key()).remove();
                     cordova.plugins.notification.local.cancel(date_en_cours.id, function () {
-                      console.log('Notif annulée : ' + date_en_cours.id);
                     });
                     suite = false;
                   }
@@ -391,7 +375,6 @@ angular.module('starter.controllers', ['firebase', 'ionic.cloud'])
               newNotifActive.set(date_en_cours.id);
               // ========== Scheduling
               var dateFormation = new Date(date_en_cours.date).getTime();
-              console.log('date de formation moins 1h :' + new Date(dateFormation - 3600 * 1000));
               cordova.plugins.notification.local.schedule({
                 id: date_en_cours.id,
                 text: 'Rappel formation : ' + $scope.langue.nom + ' à ' + date_en_cours.heure + ' en ' + date_en_cours.lieu + '.',
@@ -476,11 +459,9 @@ angular.module('starter.controllers', ['firebase', 'ionic.cloud'])
     })
   });
 
-  $scope.login = function() {
-    var email = "a@alll.fr";
-    /*  var email = $scope.data.email;*/
-    var password = "000000";
-    /*  var password = $scope.data.password;*/
+  $scope.login = function(data) {
+    var email = data.email;
+    var password = data.password;
     firebase.auth().signInWithEmailAndPassword(email, password).then(function (user) {
       //Success callback
       console.log('Authentication successful', user.uid);
@@ -501,8 +482,7 @@ angular.module('starter.controllers', ['firebase', 'ionic.cloud'])
       var refNotifActiveDefaut = DATABASE.getRefNotifActiveDefaut(user.uid);
       refNotifActive.on('value', function(snapshotNA) {
         refNotifActiveDefaut.on('value', function (snapshot) {
-          console.log(snapshot.val());
-          $scope.notifDefaut = {checked : snapshot.val()};
+           $scope.notifDefaut = {checked : snapshot.val()};
           $scope.notifDefautChange = function() {
             var confirmPopup = $ionicPopup.confirm({
               title: 'Notifications par défaut',
@@ -517,7 +497,6 @@ angular.module('starter.controllers', ['firebase', 'ionic.cloud'])
                   refNotifActive.child(dataSnapshotNA.key()).remove();
                   //On annule la notification correspondante
                   cordova.plugins.notification.local.cancel(dataSnapshotNA.val(), function () {
-                    console.log('Notif annulée : ' + dataSnapshotNA.val());
                   });
                 });
 
@@ -529,8 +508,6 @@ angular.module('starter.controllers', ['firebase', 'ionic.cloud'])
                     languesDispo.$loaded(function () {
                       angular.forEach(languesDispo, function (langueDispo) {
                         angular.forEach(langues, function (langue) {
-                          console.log(langue);
-                          console.log(langueDispo);
                           if (langueDispo.$value == langue.id) {
                             var datesForm = langue.datesFormation;
                             angular.forEach(datesForm, function(dateForm) {

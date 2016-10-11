@@ -40,6 +40,20 @@
       "email" : "emilie.durand@gmail.com",
       "languesDispo": [0,2],
       "notifActiveDefaut" : false
+    },
+    "7mWN3C1XGhRcpF7fvlTJ9bD7wmE3" : {
+      "nom" : "Utilisateur1",
+      "prenom" : "Factice",
+      "email" : "utilisateur1@mail.com",
+      "languesDispo": [0,2],
+      "notifActiveDefaut" : false
+    },
+    "Gd20v13M8CXnVwOsgrf8RbJH5Wk1" : {
+      "nom" : "Utilisateur2",
+      "prenom" : "Factice",
+      "email" : "utilisateur2@mail.com",
+      "languesDispo": [0,1,2,3],
+      "notifActiveDefaut" : false
     }
   },
   "langues" : {
@@ -51,27 +65,27 @@
       "datesFormation" : {
         "date1" : {
           "id" : 0,
-          "date" : "2016-10-11T14:00",
+          "date" : "2016-10-12T22:00",
           "lieu" : "Salle 1"
         },
         "date2" : {
           "id" : 1,
-          "date" : "2016-10-11T15:00",
+          "date" : "2016-10-13T15:00",
           "lieu" : "Salle 25"
         },
         "date3" : {
           "id" : 2,
-          "date" : "2016-10-11T14:30",
+          "date" : "2016-10-14T14:30",
           "lieu" : "Salle 5"
         },
         "date4" : {
           "id" : 3,
-          "date" : "2016-10-09T16:05",
+          "date" : "2016-10-15T16:05",
           "lieu" : "Salle 5"
         },
         "date5" : {
           "id" : 4,
-          "date" : "2016-10-10T16:00",
+          "date" : "2016-10-16T16:00",
           "lieu" : "Salle 5"
         },
         "date10" : {
@@ -167,7 +181,7 @@
               "phrase_deb" : "My brother Stuart wants",
               "phrase_fin" : "go swimming with him.",
               "propositions" : ["I", "me too", "me"],
-              "reponse" : "me to"
+              "reponse" : "me too"
             },
             "ex5" : {
               "id":5,
