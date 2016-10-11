@@ -1,8 +1,8 @@
 angular.module('starter.services', [])
 
 .constant('CONSTANTES' , {
-    'NBEXS': 3,
-    'NBEXS_SUPP': 2
+    'NBEXS': 5,
+    'NBEXS_SUPP': 3
 })
 
 .factory('DATABASE', function($firebaseArray, $firebaseObject) {
