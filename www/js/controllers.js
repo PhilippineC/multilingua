@@ -29,7 +29,9 @@ angular.module('starter.controllers', ['firebase', 'ionic.cloud'])
                       $scope.langues.sort(function(a,b) {
                         if (a.id > b.id)
                           return 1;
-                        else return -1;
+                        if (a.id < b.id)
+                          return -1;
+                        else return 0;
                       });
                       console.log($scope.langues);
                       $scope.$apply();
@@ -306,7 +308,9 @@ angular.module('starter.controllers', ['firebase', 'ionic.cloud'])
                     $scope.langues.sort(function(a,b) {
                       if (a.id > b.id)
                         return 1;
-                      else return -1;
+                      if (a.id < b.id)
+                        return -1;
+                      else return 0;
                     });
                     $scope.$apply();
                   })
