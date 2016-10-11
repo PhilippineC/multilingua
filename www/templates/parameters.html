@@ -1,4 +1,4 @@
-<ion-view view-title="Paramètres du compte" animation="slide-right">
+<ion-view view-title="Paramètres du compte" side="left" animation="slide-left">
     <ion-nav-bar class="bar-positive" align-title="center">
         <ion-nav-buttons side="left">
             <button class="button button-clear" ng-click="myGoBack()">
@@ -21,7 +21,7 @@
             </ion-item>
 
             <div class="item item-divider">
-                Paramètrage par défaut des notifications
+                Paramétrage par défaut des notifications
             </div>
             <ion-toggle toggle-class="toggle-positive"
                         ng-model="notifDefaut.checked"
@@ -35,7 +35,7 @@
                 Déconnection
             </div>
             <ion-item class="item item-icon-left" ng-click="deconnection()">
-                <i class="icon ion-log-out"></i>
+                <i class="icon ion-log-out custom_icon_deconnection"></i>
                 Se déconnecter
             </ion-item>
 

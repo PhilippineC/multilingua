@@ -18,19 +18,24 @@ angular.module('starter.controllers', ['firebase', 'ionic.cloud'])
             angular.forEach(languesDispo, function(langueDispo) {
               angular.forEach(langues, function(langue) {
                 if (langueDispo.$value == langue.id) {
+                  console.log(langueDispo.$value);
                   var storage = firebase.storage();
                   var drapeauReference = storage.refFromURL('gs://multilingua-d2319.appspot.com/drapeau/' + langue.nom + '.jpg');
                   drapeauReference.getDownloadURL().then(function (src) {
+                    console.log(src);
                     $ionicPlatform.ready(function () {
-                      var langueTemp = {};
-                      langueTemp = langue;
-                      langueTemp.drapeau = src;
-                      console.log(langueTemp);
-                      /* langue.drapeau = src;*/
-                      $scope.langues.push(langueTemp);
+                      langue.drapeau = src;
+                      $scope.langues.push(langue);
+                      $scope.langues.sort(function(a,b) {
+                        if (a.id > b.id)
+                          return 1;
+                        else return -1;
+                      });
                       console.log($scope.langues);
                       $scope.$apply();
                     })
+                  }).catch(function (error) {
+                    console.log(error)
                   });
                 }
               })
@@ -50,14 +55,12 @@ angular.module('starter.controllers', ['firebase', 'ionic.cloud'])
       langue.$loaded(function() {
         $scope.langue = langue;
         var allCours = langue.cours;
-        console.log(allCours);
         var refCoursTerm = DATABASE.getRefCoursTerm(user.uid);
         refCoursTerm.on('value', function (snapshot) {
           $scope.cours = [];
           angular.forEach(allCours, function (lecon) {
             lecon.termine = false;
             snapshot.forEach(function (childSnapshot) {
-              console.log(childSnapshot.val());
               if (childSnapshot.val() == lecon.id) {
                 lecon.termine = true;
               }
@@ -279,11 +282,15 @@ angular.module('starter.controllers', ['firebase', 'ionic.cloud'])
   })
 })
 
-.controller('AgendaCtrl', function($scope, DATABASE, $state, $ionicPlatform) {
+.controller('AgendaCtrl', function($scope, DATABASE, $state, $ionicPlatform, $ionicLoading) {
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       var langues = DATABASE.getLangues('id');
       langues.$loaded(function() {
+        $ionicLoading.show({
+          template: '<ion-spinner icon="ios"></ion-spinner>',
+          duration : 1000
+        });
         var languesDispo = DATABASE.getDataUserLanguesDispo(user.uid);
         languesDispo.$loaded(function() {
           $scope.langues = [];
@@ -296,9 +303,16 @@ angular.module('starter.controllers', ['firebase', 'ionic.cloud'])
                   $ionicPlatform.ready(function () {
                     langue.drapeau = src;
                     $scope.langues.push(langue);
+                    $scope.langues.sort(function(a,b) {
+                      if (a.id > b.id)
+                        return 1;
+                      else return -1;
+                    });
                     $scope.$apply();
                   })
-                })
+                }).catch(function (error) {
+                  console.log(error)
+                });
               }
             })
           });
@@ -391,11 +405,15 @@ angular.module('starter.controllers', ['firebase', 'ionic.cloud'])
 })
 
 
-.controller('ContactCtrl', function($scope,DATABASE, $cordovaEmailComposer, $ionicPlatform, $state) {
+.controller('ContactCtrl', function($scope,DATABASE, $ionicLoading, $ionicPlatform, $state) {
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
       var responsables = DATABASE.getResponsables();
       responsables.$loaded(function() {
+        $ionicLoading.show({
+          template: '<ion-spinner icon="ios"></ion-spinner>',
+          duration : 1000
+        });
         $scope.responsables = [];
         angular.forEach(responsables, function (responsable) {
           var storage = firebase.storage();
@@ -538,7 +556,7 @@ angular.module('starter.controllers', ['firebase', 'ionic.cloud'])
         });
       });
       $scope.deconnection = function() {
-        $ionicLoading.show({template:'Déconnection....'});
+        $ionicLoading.show({template:'Déconnexion....'});
       /*  $localstorage.set('loggin_state', '');*/
         firebase.auth().signOut().then(function() {
           console.log('Sign-out success');

@@ -9,6 +9,10 @@
     padding-left : 10px
 }
 
+.custom_icon_deconnection {
+    color : #387df4;
+}
+
 .custon_icon_mark {
     color : green;
     padding-top : 11px;
@@ -90,4 +94,17 @@ i.custon_icon_back.ion-arrow-left-c {
 
 p.contenu_chapitre {
     margin-top : 0px;
+}
+
+.liste-item.ng-enter {
+    -webkit-animation: fadeInLeft 1s;
+    animation: fadeInLeft 1s;
+}
+
+.liste-item.ng-enter-stagger {
+    -webkit-animation-delay: 200ms;
+    animation-delay: 200ms;
+    /* override to make sure it's not inherited from other styles */
+    -webkit-animation-duration: 0;
+    animation-duration: 0;
 }

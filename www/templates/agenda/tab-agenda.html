@@ -1,7 +1,7 @@
 <ion-view view-title="Multilingua - Agenda">
     <ion-content>
         <ion-list>
-            <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="langue in langues" href="#/tab/agenda/{{langue.id}}">
+            <ion-item class="liste-item item-remove-animate item-avatar item-icon-right" ng-repeat="langue in langues" href="#/tab/agenda/{{langue.id}}">
                 <img ng-src="{{langue.drapeau}}">
                 <h2>{{langue.nom}}</h2>
                 <p>{{langue.sousTexteAgenda}}</p>
