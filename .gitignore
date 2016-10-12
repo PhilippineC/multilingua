@@ -5,6 +5,6 @@ node_modules/
 platforms/
 plugins/
 www/lib/
-Appli_pour_Android
-zipalign
+Appli_pour_Android/
+zipalign.exe
 3c973b0d.keystore
