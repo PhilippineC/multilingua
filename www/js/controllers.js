@@ -11,6 +11,10 @@ angular.module('starter.controllers', ['firebase', 'ionic.cloud'])
         template: '<ion-spinner icon="ios"></ion-spinner>',
         duration : 1000
       });
+    /*  DATABASE.getNbLangues(function(nblangues) {
+        $scope.nbLangues = nblangues;
+      });*/
+
       langues.$loaded(function() {
           var languesDispo = DATABASE.getDataUserLanguesDispo(user.uid);
           languesDispo.$loaded(function() {

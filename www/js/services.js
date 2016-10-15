@@ -16,6 +16,13 @@ angular.module('starter.services', [])
       return $firebaseArray(refLangues.orderByChild(orderparam));
     },
 
+    getNbLangues: function(callback) {
+      var data = $firebaseArray(refLangues);
+      data.$loaded(function() {
+        callback(data.length);
+        });
+    },
+
     getDatesFormation: function(langueId) {
       var data = refLangues.child(langueId).child('datesFormation').orderByChild('date');
       return $firebaseArray(data);
