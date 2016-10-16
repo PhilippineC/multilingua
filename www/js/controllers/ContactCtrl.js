@@ -1,7 +1,7 @@
-app.controller('ContactCtrl', function($scope,DATABASE, $ionicLoading, $ionicPlatform, $state) {
+appCtrl.controller('ContactCtrl', function($scope, RESPONSABLES, $ionicLoading, $ionicPlatform, $state) {
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
-            var responsables = DATABASE.getResponsables();
+            var responsables = RESPONSABLES.getResponsables();
             responsables.$loaded(function() {
                 $ionicLoading.show({
                     template: '<ion-spinner icon="ios"></ion-spinner>',

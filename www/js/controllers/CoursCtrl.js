@@ -1,10 +1,10 @@
-app.controller('CoursCtrl', ['$scope', function($scope, DATABASE, $state, $ionicPlatform, $ionicLoading) {
+appCtrl.controller('CoursCtrl', function($scope, LANGUES, PROFILE, $state, $ionicPlatform, $ionicLoading) {
         firebase.auth().onAuthStateChanged(function(user) {
             if (user) {
                 console.log(user);
                 console.log(firebase.auth().currentUser);
                 /*  var user = DATABASE.getDataUser(user.uid);*/
-                var langues = DATABASE.getLangues('id');
+                var langues = LANGUES.getLangues('id');
                 $ionicLoading.show({
                     template: '<ion-spinner icon="ios"></ion-spinner>',
                     duration : 1000
@@ -14,7 +14,7 @@ app.controller('CoursCtrl', ['$scope', function($scope, DATABASE, $state, $ionic
                  });*/
 
                 langues.$loaded(function() {
-                    var languesDispo = DATABASE.getDataUserLanguesDispo(user.uid);
+                    var languesDispo = PROFILE.getDataUserLanguesDispo(user.uid);
                     languesDispo.$loaded(function() {
                         $scope.langues = [];
                         angular.forEach(languesDispo, function(langueDispo) {
@@ -47,4 +47,4 @@ app.controller('CoursCtrl', ['$scope', function($scope, DATABASE, $state, $ionic
                 $state.go("login");
             }
         });
-    }]);
+    });

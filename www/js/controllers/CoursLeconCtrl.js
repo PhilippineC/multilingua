@@ -1,10 +1,10 @@
-app.controller('CoursLeconCtrl', function($scope, $ionicPlatform, $cordovaMedia, $stateParams, DATABASE) {
+appCtrl.controller('CoursLeconCtrl', function($scope, $ionicPlatform, $cordovaMedia, $stateParams, LANGUES) {
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
-            var langue = DATABASE.getLangue($stateParams.langueId);
+            var langue = LANGUES.getLangue($stateParams.langueId);
             langue.$loaded(function() {
                 $scope.langue = langue;
-                var lecon = DATABASE.getLecon($stateParams.langueId, $stateParams.leconId);
+                var lecon = LANGUES.getLecon($stateParams.langueId, $stateParams.leconId);
                 lecon.$loaded(function() {
                     $scope.lecon = lecon;
                     $scope.chapitres = lecon.chap;

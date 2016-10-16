@@ -1,9 +1,9 @@
-app.controller('ParamCtrl', function($scope, $state, DATABASE, $ionicPopup, $ionicLoading, $ionicHistory, $timeout) {
+appCtrl.controller('ParamCtrl', function($scope, $state, LANGUES, PROFILE, $ionicPopup, $ionicLoading, $ionicHistory, $timeout) {
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-            $scope.user = DATABASE.getDataUser(user.uid);
-            var refNotifActive = DATABASE.getRefNotifActive(user.uid);
-            var refNotifActiveDefaut = DATABASE.getRefNotifActiveDefaut(user.uid);
+            $scope.user = PROFILE.getDataUser(user.uid);
+            var refNotifActive = PROFILE.getRefNotifActive(user.uid);
+            var refNotifActiveDefaut = PROFILE.getRefNotifActiveDefaut(user.uid);
             refNotifActive.on('value', function(snapshotNA) {
                 refNotifActiveDefaut.on('value', function (snapshot) {
                     $scope.notifDefaut = {checked : snapshot.val()};
@@ -26,9 +26,9 @@ app.controller('ParamCtrl', function($scope, $state, DATABASE, $ionicPopup, $ion
 
                                 if ($scope.notifDefaut.checked) {
                                     // Replir le tableau avec toutes les id des dates des formations des langues dispo
-                                    var langues = DATABASE.getLangues('id');
+                                    var langues = LANGUES.getLangues('id');
                                     langues.$loaded(function() {
-                                        var languesDispo = DATABASE.getDataUserLanguesDispo(user.uid);
+                                        var languesDispo = PROFILE.getDataUserLanguesDispo(user.uid);
                                         languesDispo.$loaded(function () {
                                             angular.forEach(languesDispo, function (langueDispo) {
                                                 angular.forEach(langues, function (langue) {

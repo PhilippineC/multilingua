@@ -1,12 +1,12 @@
-app.controller('AgendaLangueCtrl', function($scope, $stateParams, DATABASE, $state) {
+appCtrl.controller('AgendaLangueCtrl', function($scope, $stateParams, LANGUES, PROFILE, $state) {
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
-            var ref = DATABASE.getRefNotifActive(user.uid);
+            var ref = PROFILE.getRefNotifActive(user.uid);
             ref.on('value', function (snapshot) {
-                var langue = DATABASE.getLangue($stateParams.langueId);
+                var langue = LANGUES.getLangue($stateParams.langueId);
                 langue.$loaded(function () {
                     $scope.langue = langue;
-                    var dates = DATABASE.getDatesFormation($stateParams.langueId);
+                    var dates = LANGUES.getDatesFormation($stateParams.langueId);
                     dates.$loaded(function() {
                         $scope.dates = [];
                         angular.forEach(dates, function (date_en_cours) { // ou faire une boucle sur $scope.dates
@@ -34,7 +34,7 @@ app.controller('AgendaLangueCtrl', function($scope, $stateParams, DATABASE, $sta
 
                 $scope.pushNotificationChange = function (date_en_cours) {
                     var suite = true;
-                    var ref = DATABASE.getRefNotifActive(user.uid);
+                    var ref = PROFILE.getRefNotifActive(user.uid);
                     ref.once('value', function (snapshot) {
                         snapshot.forEach(function (dataSnapshot) {
                             switch (date_en_cours.checked) {

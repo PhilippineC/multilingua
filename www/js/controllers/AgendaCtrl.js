@@ -1,13 +1,13 @@
-app.controller('AgendaCtrl', function($scope, DATABASE, $state, $ionicPlatform, $ionicLoading) {
+appCtrl.controller('AgendaCtrl', function($scope, LANGUES, PROFILE, $state, $ionicPlatform, $ionicLoading) {
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-            var langues = DATABASE.getLangues('id');
+            var langues = LANGUES.getLangues('id');
             langues.$loaded(function() {
                 $ionicLoading.show({
                     template: '<ion-spinner icon="ios"></ion-spinner>',
                     duration : 1000
                 });
-                var languesDispo = DATABASE.getDataUserLanguesDispo(user.uid);
+                var languesDispo = PROFILE.getDataUserLanguesDispo(user.uid);
                 languesDispo.$loaded(function() {
                     $scope.langues = [];
                     angular.forEach(languesDispo, function(langueDispo) {

@@ -1,4 +1,4 @@
-app.controller('LoginCtrl', function($scope, $state, $ionicPlatform) {
+appCtrl.controller('LoginCtrl', function($scope, $state, $ionicPlatform) {
     var storage = firebase.storage();
     var logoReference = storage.refFromURL('gs://multilingua-d2319.appspot.com/logo/logo.jpg');
     logoReference.getDownloadURL().then(function (src) {

@@ -1,14 +1,14 @@
-app.controller('CoursExerciceCtrl', function($scope, DATABASE, $stateParams, $timeout, $state, CONSTANTES) {
+appCtrl.controller('CoursExerciceCtrl', function($scope, LANGUES, PROFILE, $stateParams, $timeout, $state, CONSTANTES) {
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             var exercice = null;
-            var langue = DATABASE.getLangue($stateParams.langueId);
+            var langue = LANGUES.getLangue($stateParams.langueId);
             langue.$loaded(function() {
                 $scope.langue = langue;
-                var lecon = DATABASE.getLecon($stateParams.langueId, $stateParams.leconId);
+                var lecon = LANGUES.getLecon($stateParams.langueId, $stateParams.leconId);
                 lecon.$loaded(function() {
                     $scope.lecon = lecon;
-                    var leconEnCours = DATABASE.getLecon($stateParams.langueId, $stateParams.leconEnCoursId);
+                    var leconEnCours = LANGUES.getLecon($stateParams.langueId, $stateParams.leconEnCoursId);
                     leconEnCours.$loaded(function() {
                         $scope.leconEnCours = leconEnCours;
                         $scope.exNum = parseInt($stateParams.exEnCours);
@@ -35,7 +35,7 @@ app.controller('CoursExerciceCtrl', function($scope, DATABASE, $stateParams, $ti
                                 proposition.wrong = false;
                                 $timeout(
                                     function () {
-                                        var ref = DATABASE.getRefCoursTerm(user.uid);
+                                        var ref = PROFILE.getRefCoursTerm(user.uid);
                                         var suite = true;
                                         var nextEx = exercice.id + 1;
                                         var exEnCours = parseInt($stateParams.exEnCours) + 1;
@@ -72,7 +72,7 @@ app.controller('CoursExerciceCtrl', function($scope, DATABASE, $stateParams, $ti
                                                             i++;
                                                         });
                                                     }
-                                                    var leconAlea = DATABASE.getLecon($stateParams.langueId, leconAleaId);
+                                                    var leconAlea = LANGUES.getLecon($stateParams.langueId, leconAleaId);
                                                     leconAlea.$loaded(function() {
                                                         var exAleaId = Math.floor(Math.random() * (Object.keys(leconAlea.exercices)).length) + 1;
                                                         $state.go("tab.cours-exercice", {
