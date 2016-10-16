@@ -124,7 +124,7 @@ angular.module('starter', ['ionic','ionic.cloud', 'starter.controllers', 'starte
       views: {
         'tab-agenda': {
           templateUrl: 'templates/agenda/tab-agenda.html',
-          controller: 'AgendaCtrl'
+          controller: 'CoursCtrl'
         }
       }
     })
