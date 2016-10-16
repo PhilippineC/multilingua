@@ -2,25 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="24ee967b-d665-42a8-b4e6-0d6d4870e288" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/js/services/constantes.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/js/services/langues.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/js/services/profiles.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/js/services/responsables.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/www/js/controllers.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/www/js/services.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/index.html" afterPath="$PROJECT_DIR$/www/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controllers/AgendaCtrl.js" afterPath="$PROJECT_DIR$/www/js/controllers/AgendaCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controllers/AgendaLangueCtrl.js" afterPath="$PROJECT_DIR$/www/js/controllers/AgendaLangueCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controllers/ContactCtrl.js" afterPath="$PROJECT_DIR$/www/js/controllers/ContactCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controllers/CoursCtrl.js" afterPath="$PROJECT_DIR$/www/js/controllers/CoursCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controllers/CoursExerciceCtrl.js" afterPath="$PROJECT_DIR$/www/js/controllers/CoursExerciceCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controllers/CoursExerciceFinCtrl.js" afterPath="$PROJECT_DIR$/www/js/controllers/CoursExerciceFinCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controllers/CoursLangueCtrl.js" afterPath="$PROJECT_DIR$/www/js/controllers/CoursLangueCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controllers/CoursLeconCtrl.js" afterPath="$PROJECT_DIR$/www/js/controllers/CoursLeconCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controllers/LoginCtrl.js" afterPath="$PROJECT_DIR$/www/js/controllers/LoginCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controllers/ParamCtrl.js" afterPath="$PROJECT_DIR$/www/js/controllers/ParamCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/module.js" afterPath="$PROJECT_DIR$/www/js/module.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/services/langues.js" afterPath="$PROJECT_DIR$/www/js/services/langues.js" />
     </list>
     <ignored path="Multilingua.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -42,16 +24,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="profiles.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/js/services/profiles.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="22" column="47" selection-start-line="22" selection-start-column="47" selection-end-line="22" selection-end-column="47" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/index.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -62,10 +34,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.53640777">
+            <state vertical-scroll-proportion="0.0">
               <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
               <folding />
             </state>
@@ -86,7 +58,17 @@
         <entry file="file://$PROJECT_DIR$/www/js/controllers/CoursCtrl.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="45" column="20" selection-start-line="45" selection-start-column="20" selection-end-line="45" selection-end-column="20" />
+              <caret line="13" column="22" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="langues.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/www/js/services/langues.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.66019416">
+              <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -173,9 +155,7 @@
         <option value="$PROJECT_DIR$/www/js/module.js" />
         <option value="$PROJECT_DIR$/www/js/services.js" />
         <option value="$PROJECT_DIR$/www/js/services/constantes.js" />
-        <option value="$PROJECT_DIR$/www/js/controllers/CoursCtrl.js" />
         <option value="$PROJECT_DIR$/www/js/controllers/AgendaCtrl.js" />
-        <option value="$PROJECT_DIR$/www/js/services/langues.js" />
         <option value="$PROJECT_DIR$/www/js/controllers/AgendaLangueCtrl.js" />
         <option value="$PROJECT_DIR$/www/js/controllers/ContactCtrl.js" />
         <option value="$PROJECT_DIR$/www/js/services/responsables.js" />
@@ -186,6 +166,8 @@
         <option value="$PROJECT_DIR$/www/js/controllers/CoursLeconCtrl.js" />
         <option value="$PROJECT_DIR$/www/js/controllers/ParamCtrl.js" />
         <option value="$PROJECT_DIR$/www/index.html" />
+        <option value="$PROJECT_DIR$/www/js/controllers/CoursCtrl.js" />
+        <option value="$PROJECT_DIR$/www/js/services/langues.js" />
       </list>
     </option>
   </component>
@@ -725,14 +707,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/services/langues.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/js/services/responsables.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -745,14 +719,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="29" column="14" selection-start-line="29" selection-start-column="14" selection-end-line="29" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/controllers/CoursCtrl.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="45" column="20" selection-start-line="45" selection-start-column="20" selection-end-line="45" selection-end-column="20" />
           <folding />
         </state>
       </provider>
@@ -823,8 +789,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.53640777">
+        <state vertical-scroll-proportion="0.0">
           <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/controllers/CoursCtrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="13" column="22" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/services/langues.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.66019416">
+          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
           <folding />
         </state>
       </provider>
