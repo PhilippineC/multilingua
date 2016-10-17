@@ -1,4 +1,4 @@
-appCtrl.controller('ParamCtrl', function($scope, $state, LANGUES, PROFILE, $ionicPopup, $ionicLoading, $ionicHistory, $timeout) {
+appCtrl.controller('ParamCtrl', function($scope, $state, LANGUES, PROFILE, NOTIFICATIONS, $ionicPopup, $ionicLoading, $ionicHistory, $timeout) {
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             $scope.user = PROFILE.getDataUser(user.uid);
@@ -20,8 +20,7 @@ appCtrl.controller('ParamCtrl', function($scope, $state, LANGUES, PROFILE, $ioni
                                     //On supprime la valeur du tableau pour avoir un tableau vide
                                     refNotifActive.child(dataSnapshotNA.key()).remove();
                                     //On annule la notification correspondante
-                                    cordova.plugins.notification.local.cancel(dataSnapshotNA.val(), function () {
-                                    });
+                                    NOTIFICATIONS.cancelNotif(dataSnapshotNA.val());
                                 });
 
                                 if ($scope.notifDefaut.checked) {
@@ -39,11 +38,8 @@ appCtrl.controller('ParamCtrl', function($scope, $state, LANGUES, PROFILE, $ioni
                                                                 var newdateID = refNotifActive.push();
                                                                 newdateID.set(dateForm.id);
                                                                 // Nouvelle notif créer
-                                                                cordova.plugins.notification.local.schedule({
-                                                                    id: dateForm.id,
-                                                                    text: 'Rappel : formation en ' + langue.nom + ' dans 1h en ' + dateForm.lieu + '.',
-                                                                    at: new Date(new Date(dateForm.date).getTime() - 3600 * 1000) // On retire une heure*/
-                                                                })
+                                                                var dateFormation = new Date(dateForm.date).getTime();
+                                                                NOTIFICATIONS.pushNotif(dateForm.id, langue.nom, dateForm.heure, dateForm.lieu, dateFormation);
                                                             }
                                                         })
                                                     }

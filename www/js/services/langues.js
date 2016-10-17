@@ -16,19 +16,30 @@ appServices
                 })
             },
 
-            getDatesFormation: function(langueId) {
-                var data = refLangues.child(langueId).child('datesFormation').orderByChild('date');
-                return $firebaseArray(data);
+            getDatesFormation: function(langueId, callback) {
+                var data = $firebaseArray(refLangues.child(langueId).child('datesFormation').orderByChild('date'));
+                data.$loaded(function() {
+                    callback(data);
+                })
             },
 
             getLecon : function(langueId, leconId, callback) {
                 var lecon = $firebaseObject(refLangues.child(langueId).child('cours').child(leconId));
-                var chapitres = lecon.chap;
-                callback(lecon, chapitres);
+                lecon.$loaded(function() {
+                    callback(lecon);
+                })
             },
             getChapitres : function(langueId, leconId, callback) {
                 var chapitres = $firebaseObject(refLangues.child(langueId).child('cours').child(leconId).child('chap'));
-                callback(chapitres);
+                chapitres.$loaded(function() {
+                    callback(chapitres);
+                })
+            },
+            getExercices : function(langueId, leconId, callback) {
+                var exercices = $firebaseObject(refLangues.child(langueId).child('cours').child(leconId).child('exercices'));
+                exercices.$loaded(function() {
+                    callback(exercices);
+                })
             }
         }
     });

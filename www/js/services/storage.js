@@ -11,6 +11,24 @@ appServices
                 }).catch(function (error) {
                     console.log(error)
                 });
+            },
+
+            getAvatar : function(responsableImg, callback) {
+                var avatarReference = storage.refFromURL('gs://multilingua-d2319.appspot.com/avatar/' + responsableImg);
+                avatarReference.getDownloadURL().then(function (src) {
+                    callback(src);
+                 }).catch(function (error) {
+                    console.log(error);
+                });
+            },
+
+            getAudio : function(leconId, callback) {
+                var audioReference = storage.refFromURL('gs://multilingua-d2319.appspot.com/cours_audio/Cours' + leconId + '.mp3');
+                audioReference.getDownloadURL().then(function (src) {
+                    callback(src);
+                }).catch(function (error) {
+                    console.log(error);
+                });
             }
         };
     });
