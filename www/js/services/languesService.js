@@ -1,6 +1,6 @@
 appServices
-    .factory('LANGUES', function($firebaseArray, $firebaseObject) {
-        var refLangues = new Firebase("https://multilingua-d2319.firebaseio.com/langues");
+    .factory('languesService', function($firebaseArray, $firebaseObject) {
+        var refLangues = firebase.database().ref('langues');
         return {
             getLangues: function(callback) {
                 var data = $firebaseArray(refLangues.orderByChild('id'));

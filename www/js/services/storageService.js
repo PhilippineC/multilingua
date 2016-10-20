@@ -1,6 +1,5 @@
 appServices
-
-    .factory('STORAGE', function($ionicPlatform) {
+    .factory('storageService', function() {
         var storage = firebase.storage();
 
         return {
@@ -25,6 +24,15 @@ appServices
             getAudio : function(leconId, callback) {
                 var audioReference = storage.refFromURL('gs://multilingua-d2319.appspot.com/cours_audio/Cours' + leconId + '.mp3');
                 audioReference.getDownloadURL().then(function (src) {
+                    callback(src);
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            },
+
+            getLogo : function(callback) {
+                var logoReference = storage.refFromURL('gs://multilingua-d2319.appspot.com/logo/logo.jpg');
+                logoReference.getDownloadURL().then(function (src) {
                     callback(src);
                 }).catch(function (error) {
                     console.log(error);

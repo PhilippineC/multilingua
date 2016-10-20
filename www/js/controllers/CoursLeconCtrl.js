@@ -1,17 +1,18 @@
-appCtrl.controller('CoursLeconCtrl', function($scope, $ionicPlatform, $cordovaMedia, $stateParams, LANGUES, STORAGE) {
-    firebase.auth().onAuthStateChanged(function (user) {
+appCtrl.controller('CoursLeconCtrl', function($scope, $ionicPlatform, $cordovaMedia, $stateParams, languesService, storageService, $firebaseAuth) {
+    $scope.authObj = $firebaseAuth();
+    $scope.authObj.$onAuthStateChanged(function(user) {
         if (user) {
-            LANGUES.getLangue($stateParams.langueId, function(langue) {
+            languesService.getLangue($stateParams.langueId, function(langue) {
                 $scope.langue = langue;
             });
 
-            LANGUES.getLecon($stateParams.langueId, $stateParams.leconId, function(lecon) {
+            languesService.getLecon($stateParams.langueId, $stateParams.leconId, function(lecon) {
                 console.log(lecon);
                 $scope.lecon = lecon;
                 $scope.leconEnCoursId = lecon.id;
                 /* Gestion des médias */
                 if (lecon.audio) {
-                    STORAGE.getAudio(lecon.id, function(src) {
+                    storageService.getAudio(lecon.id, function(src) {
                         $ionicPlatform.ready(function () {
                             var media = $cordovaMedia.newMedia(src);
                             $scope.playMedia = function () {
@@ -30,7 +31,7 @@ appCtrl.controller('CoursLeconCtrl', function($scope, $ionicPlatform, $cordovaMe
                     });
                 }
             });
-            LANGUES.getChapitres($stateParams.langueId, $stateParams.leconId, function(chapitres) {
+            languesService.getChapitres($stateParams.langueId, $stateParams.leconId, function(chapitres) {
                 $scope.chapitres = chapitres;
             });
 

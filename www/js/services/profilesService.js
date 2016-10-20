@@ -1,7 +1,6 @@
 appServices
-
-    .factory('PROFILE', function($firebaseArray, $firebaseObject, LANGUES, NOTIFICATIONS, STORAGE, $ionicPlatform) {
-        var refProfiles = new Firebase("https://multilingua-d2319.firebaseio.com/profiles");
+    .factory('profilesService', function($firebaseArray, $firebaseObject, languesService, notificationsService, storageService) {
+        var refProfiles = firebase.database().ref('profiles');
         return {
             getRefCoursTerm : function(uid) {
                 return refProfiles.child(uid).child('coursTerm');
@@ -15,7 +14,7 @@ appServices
             getRefNotifActiveAgenda : function(uid, langueId, callback) {
                 var ref = refProfiles.child(uid).child('notifActive');
                 ref.on('value', function (snapshot) {
-                    LANGUES.getDatesFormation(langueId, function(dates) {
+                    languesService.getDatesFormation(langueId, function(dates) {
                         var datesReturn = [];
                         angular.forEach(dates, function (date_en_cours) { // ou faire une boucle sur $scope.dates
                             date_en_cours.checked = false;
@@ -45,7 +44,7 @@ appServices
 
             changeRefNotifActiveAgenda : function(uid, date_en_cours, langueId) {
                 var suite = true;
-                LANGUES.getLangue(langueId, function(langue) {
+                languesService.getLangue(langueId, function(langue) {
                     var ref = refProfiles.child(uid).child('notifActive');
                     ref.once('value', function (snapshot) {
                         snapshot.forEach(function (dataSnapshot) {
@@ -57,8 +56,8 @@ appServices
                                     break;
                                 case false :
                                     if (dataSnapshot.val() == date_en_cours.id) {
-                                        ref.child(dataSnapshot.key()).remove();
-                                        NOTIFICATIONS.cancelNotif(date_en_cours.id);
+                                        ref.child(dataSnapshot.key).remove();
+                                        notificationsService.cancelNotif(date_en_cours.id);
                                         suite = false;
                                     }
                                     break;
@@ -69,7 +68,7 @@ appServices
                             newNotifActive.set(date_en_cours.id);
                             // ========== Scheduling
                             var dateFormation = new Date(date_en_cours.date).getTime();
-                            NOTIFICATIONS.pushNotif(date_en_cours.id, langue.nom, date_en_cours.heure, date_en_cours.lieu, dateFormation);
+                            notificationsService.pushNotif(date_en_cours.id, langue.nom, date_en_cours.heure, date_en_cours.lieu, dateFormation);
                         }
                     })
                 });
@@ -79,8 +78,55 @@ appServices
                 return refProfiles.child(uid).child('notifActive');
             },
 
-            getRefNotifActiveDefaut : function(uid) {
-                return refProfiles.child(uid).child('notifActiveDefaut');
+            getRefNotifActiveDefaut : function(uid, callback) {
+                var refNotifActiveDefaut = refProfiles.child(uid).child('notifActiveDefaut');
+                refNotifActiveDefaut.on("value", function(snapshot) {
+                    callback(snapshot.val());
+                });
+            },
+
+            changeNotifDefaut : function(uid, valueNotifDefaut) {
+                var refNotifActive = refProfiles.child(uid).child('notifActive');
+                var refNotifActiveDefaut = refProfiles.child(uid).child('notifActiveDefaut');
+                refNotifActiveDefaut.once('value', function (snapshot) {
+                    refNotifActive.once('value', function (snapshotNA) {
+                        refNotifActiveDefaut.set(valueNotifDefaut);
+                        // Supprimer toutes les notifs initiales
+                        snapshotNA.forEach(function (dataSnapshotNA) {
+                            //On supprime la valeur du tableau pour avoir un tableau vide
+                            refNotifActive.child(dataSnapshotNA.key).remove();
+                            //On annule la notification correspondante
+                            notificationsService.cancelNotif(dataSnapshotNA.val());
+                        });
+                    });
+                });
+
+                if (valueNotifDefaut) {
+                    // Remplir le tableau avec toutes les id des dates des formations des langues dispo
+                    var languesDispo = $firebaseArray(refProfiles.child(uid).child('languesDispo'));
+                    languesDispo.$loaded(function() {
+                        languesService.getLangues(function(langues) {
+                            angular.forEach(languesDispo, function(langueDispo) {
+                                angular.forEach(langues, function(langue) {
+                                    if (langueDispo.$value == langue.id) {
+                                        var datesForm = langue.datesFormation;
+                                        angular.forEach(datesForm, function (dateForm) {
+                                            if ((new Date(dateForm.date)) >= new Date()) { // Si la date de formation est plus tard qu'aujourd'hui
+                                                var newdateID = refNotifActive.push();
+                                                newdateID.set(dateForm.id);
+                                                // Nouvelle notif créer
+                                                var dateFormation = new Date(dateForm.date).getTime();
+                                                notificationsService.pushNotif(dateForm.id, langue.nom, dateForm.heure, dateForm.lieu, dateFormation);
+                                            }
+                                        })
+                                    }
+                                });
+                            });
+
+                        });
+                    });
+                }
+
             },
 
             getDataUser : function(uid) {
@@ -90,21 +136,23 @@ appServices
             getDataUserLanguesDispo : function(uid, callback) { //utilisé
                 var languesDispo = $firebaseArray(refProfiles.child(uid).child('languesDispo'));
                 languesDispo.$loaded(function() {
-                    LANGUES.getLangues(function(langues) {
+                    languesService.getLangues(function(langues) {
                         var scopeLangues = [];
+                        var nbLanguesLoad = 0;
                         angular.forEach(languesDispo, function(langueDispo) {
                             angular.forEach(langues, function(langue) {
                                 if (langueDispo.$value == langue.id) {
-                                    STORAGE.getDrapeau(langue.nom, function(src) {
+                                    storageService.getDrapeau(langue.nom, function(src) {
                                         langue.drapeau = src;
+                                        scopeLangues.push(langue);
+                                        nbLanguesLoad++;
+                                        if (nbLanguesLoad == languesDispo.length) {
+                                            callback(scopeLangues);
+                                        }
                                     });
-                                    scopeLangues.push(langue);
-                                    console.log(scopeLangues);
                                 }
                             });
                         });
-                        console.log(scopeLangues);
-                        callback(scopeLangues);
                     });
                 })
             },
@@ -122,7 +170,7 @@ appServices
             },
 
             getLeconsTerm : function(uid, langueId, callback) {
-                LANGUES.getLangue(langueId, function(langue) {
+                languesService.getLangue(langueId, function(langue) {
                     var refCoursTerm = refProfiles.child(uid).child('coursTerm');
                     var allCours = langue.cours;
                     refCoursTerm.on('value', function (snapshot) {

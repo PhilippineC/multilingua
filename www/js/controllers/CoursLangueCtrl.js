@@ -1,10 +1,11 @@
-appCtrl.controller('CoursLangueCtrl', function($scope, $stateParams, LANGUES, PROFILE, $state) {
-    firebase.auth().onAuthStateChanged(function (user) {
+appCtrl.controller('CoursLangueCtrl', function($scope, $stateParams, languesService, profilesService, $state, $firebaseAuth) {
+    $scope.authObj = $firebaseAuth();
+    $scope.authObj.$onAuthStateChanged(function(user) {
         if (user) {
-            LANGUES.getLangue($stateParams.langueId, function(langue) {
+            languesService.getLangue($stateParams.langueId, function(langue) {
                 $scope.langue = langue;
             });
-            PROFILE.getLeconsTerm(user.uid, $stateParams.langueId, function (lecons) {
+            profilesService.getLeconsTerm(user.uid, $stateParams.langueId, function (lecons) {
                 $scope.cours = lecons;
             });
         } else {

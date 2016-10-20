@@ -1,6 +1,5 @@
 appServices
-    .factory('NOTIFICATIONS', function() {
-
+    .factory('notificationsService', function() {
         return {
             pushNotif: function(dateId, langueNom, dateHeure, dateLieu, dateFormation) {
                 cordova.plugins.notification.local.schedule({
@@ -16,7 +15,6 @@ appServices
                 });
 
             }
-
         }
     });
 

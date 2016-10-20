@@ -1,11 +1,12 @@
-appCtrl.controller('CoursExerciceFinCtrl', function($scope, LANGUES, $stateParams, $state) {
-    firebase.auth().onAuthStateChanged(function (user) {
+appCtrl.controller('CoursExerciceFinCtrl', function($scope, languesService, $stateParams, $state, $firebaseAuth) {
+    $scope.authObj = $firebaseAuth();
+    $scope.authObj.$onAuthStateChanged(function(user) {
         if (user) {
-            LANGUES.getLangue($stateParams.langueId, function(langue) {
+            languesService.getLangue($stateParams.langueId, function(langue) {
                 $scope.langue = langue;
             });
 
-            LANGUES.getLecon($stateParams.langueId, $stateParams.leconId, function(lecon) {
+            languesService.getLecon($stateParams.langueId, $stateParams.leconId, function(lecon) {
                 $scope.lecon = lecon;
             });
         }

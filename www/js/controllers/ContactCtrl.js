@@ -1,12 +1,14 @@
-appCtrl.controller('ContactCtrl', function($scope, RESPONSABLES, $ionicLoading, $ionicPlatform, $state) {
-    firebase.auth().onAuthStateChanged(function (user) {
+appCtrl.controller('ContactCtrl', function($scope, responsablesService, $ionicLoading, $state, $firebaseAuth) {
+    $scope.authObj = $firebaseAuth();
+    $scope.authObj.$onAuthStateChanged(function(user) {
         if (user) {
             $ionicLoading.show({
                 template: '<ion-spinner icon="ios"></ion-spinner>',
                 duration : 1000
             });
-            RESPONSABLES.getResponsables(function(responsables) {
+            responsablesService.getResponsables(function(responsables) {
                 $scope.responsables = responsables;
+                $scope.$apply();
             });
 
             /* gestion de l'appel */
