@@ -6,6 +6,11 @@ appServices
             getRefCoursTerm : function(uid) {
                 return refProfiles.child(uid).child('coursTerm');
             },
+            pushNewCoursTerm : function(uid, CoursTermId) {
+                var ref = refProfiles.child(uid).child('coursTerm');
+                var newLeconTerm = ref.push();
+                newLeconTerm.set(CoursTermId);
+            },
 
             getRefNotifActiveAgenda : function(uid, langueId, callback) {
                 var ref = refProfiles.child(uid).child('notifActive');
@@ -104,8 +109,11 @@ appServices
                 })
             },
 
-            getDataUserCoursTerm : function(uid) {
-                return $firebaseArray(refProfiles.child(uid).child('coursTerm'));
+            getDataUserCoursTerm : function(uid, callback) {
+                var data = $firebaseArray(refProfiles.child(uid).child('coursTerm'));
+                data.$loaded(function() {
+                    callback(data);
+                })
             },
 
             getDataUserNotif : function(uid) {

@@ -36,7 +36,7 @@ appServices
                 })
             },
             getExercices : function(langueId, leconId, callback) {
-                var exercices = $firebaseObject(refLangues.child(langueId).child('cours').child(leconId).child('exercices'));
+                var exercices = $firebaseArray(refLangues.child(langueId).child('cours').child(leconId).child('exercices'));
                 exercices.$loaded(function() {
                     callback(exercices);
                 })

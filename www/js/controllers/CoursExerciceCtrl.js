@@ -13,14 +13,13 @@ appCtrl.controller('CoursExerciceCtrl', function($scope, LANGUES, PROFILE, $stat
             });
             LANGUES.getExercices($stateParams.langueId, $stateParams.leconId, function(exercices) {
                 $scope.exercices = exercices;
-                angular.forEach(exercices, function (exercice_en_cours) {
-                    console.log(exercice_en_cours);
-                    if (exercice_en_cours.id == $stateParams.exerciceId) {
-                        exercice = exercice_en_cours;
+                for (var j=0; j<exercices.length; j++) {
+                    if (exercices[j].id == $stateParams.exerciceId) {
+                        exercice = exercices[j];
                         $scope.exercice = exercice;
                     }
-                });
-                var propositions = exercice.propositions; // Aller chercher les prop avec service ?
+                }
+                var propositions = exercice.propositions;
                 $scope.propositions = [];
                 for (var i = 0; i<propositions.length;i++) {
                     var proposition = {};
@@ -38,56 +37,44 @@ appCtrl.controller('CoursExerciceCtrl', function($scope, LANGUES, PROFILE, $stat
                     proposition.wrong = false;
                     $timeout(
                         function () {
-                            var ref = PROFILE.getRefCoursTerm(user.uid);
                             var suite = true;
                             var nextEx = exercice.id + 1;
                             var exEnCours = parseInt($stateParams.exEnCours) + 1;
-                            if (exEnCours > (CONSTANTES.NBEXS + CONSTANTES.NBEXS_SUPP)) {
-                                ref.on('value', function (snapshot) {
-                                    snapshot.forEach(function (childSnapshot) {
-                                        if (childSnapshot.val() == leconEnCours.id) {
+                            if (exEnCours > (CONSTANTES.NBEXS + CONSTANTES.NBEXS_SUPP)) { // Exercices terminés
+                                PROFILE.getDataUserCoursTerm(user.uid, function(CoursTerm) {
+                                    for (var i =0; i<CoursTerm.length; i++) {
+                                        if (CoursTerm[i] == $stateParams.leconEnCoursId) {
                                             suite = false;
                                         }
-                                    });
+                                    }
                                     if (suite) {
-                                        var newLeconTerm = ref.push();
-                                        newLeconTerm.set(leconEnCours.id);
+                                        PROFILE.pushNewCoursTerm(user.uid, $stateParams.leconEnCoursId);
                                     }
                                     $state.go("tab.cours-exercice-fin", {
-                                        langueId: langue.id,
-                                        leconId: leconEnCours.id
+                                        langueId: $stateParams.langueId,
+                                        leconId: $stateParams.leconEnCoursId
                                     });
                                 });
                             }
                             else if (exEnCours > CONSTANTES.NBEXS) { //on rajoute 3 ex cherché aléatoirement dans les lecons déjà terminées
-                                ref.once('value', function (snapshot) {
-                                    if (snapshot.val() == null) { // dans le cas où c'est la première leçon terminée on s'arrête là
-                                        var newLeconTerm = ref.push();
-                                        newLeconTerm.set(leconEnCours.id);
+                                PROFILE.getDataUserCoursTerm(user.uid, function(CoursTerm) {
+                                    if (CoursTerm.length == 0) { // dans le cas où c'est la première leçon terminée on s'arrête là
+                                        PROFILE.pushNewCoursTerm(user.uid, $stateParams.leconEnCoursId);
                                         $state.go("tab.cours-exercice-fin", {
-                                            langueId: langue.id,
-                                            leconId: leconEnCours.id
+                                            langueId: $stateParams.langueId,
+                                            leconId: $stateParams.leconEnCoursId
                                         });
                                     }
                                     else {
-                                        var leconAleaId = leconEnCours.id;
-                                        while (leconAleaId == leconEnCours.id) {
-                                            var alea = Math.floor(Math.random() * Object.keys(snapshot.val()).length);
-                                            var i = 0;
-                                            snapshot.forEach(function (childSnapshot) {
-                                                if (i == alea) {
-                                                    leconAleaId = childSnapshot.val();
-                                                }
-                                                i++;
-                                            });
-                                        }
-                                        LANGUES.getLecon($stateParams.langueId, leconAleaId, function(leconAlea) {
-                                            var exAleaId = Math.floor(Math.random() * (Object.keys(leconAlea.exercices)).length) + 1;
+                                        var alea = Math.floor(Math.random() * CoursTerm.length); // indice aléatoire dans le tableau
+                                        var leconAleaId = CoursTerm[alea].$value;
+                                        LANGUES.getExercices($stateParams.langueId, leconAleaId, function(exercices) {
+                                            var exAleaId = Math.floor(Math.random() * exercices.length) + 1;
                                             $state.go("tab.cours-exercice", {
-                                                langueId: langue.id,
+                                                langueId: $stateParams.langueId,
                                                 leconId: leconAleaId,
                                                 exerciceId: exAleaId,
-                                                leconEnCoursId: leconEnCours.id,
+                                                leconEnCoursId: $stateParams.leconEnCoursId,
                                                 exEnCours: exEnCours
                                             });
                                         });
@@ -96,14 +83,14 @@ appCtrl.controller('CoursExerciceCtrl', function($scope, LANGUES, PROFILE, $stat
                             }
                             else {
                                 $state.go("tab.cours-exercice", {
-                                    langueId: langue.id,
-                                    leconId: lecon.id,
+                                    langueId: $stateParams.langueId,
+                                    leconId: $stateParams.leconId,
                                     exerciceId: nextEx,
-                                    leconEnCoursId: leconEnCours.id,
+                                    leconEnCoursId: $stateParams.leconEnCoursId,
                                     exEnCours: exEnCours
                                 });
                             }
-                        }, 2000);
+                        }, 1500);
                 }
                 else {
                     proposition.success = false;
@@ -114,7 +101,7 @@ appCtrl.controller('CoursExerciceCtrl', function($scope, LANGUES, PROFILE, $stat
                                 proposition.success = false;
                                 proposition.wrong = false;
                             });
-                        }, 2000);
+                        }, 1500);
                 }
             }
         } else {
