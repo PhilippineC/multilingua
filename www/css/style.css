@@ -108,3 +108,11 @@ p.contenu_chapitre {
     -webkit-animation-duration: 0;
     animation-duration: 0;
 }
+
+p.leconDuJour {
+    color : #387df4;
+}
+.border-leconDuJour {
+    border: 3px solid #387df4;
+    border-radius: 0px;
+}

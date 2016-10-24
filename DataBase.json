@@ -65,40 +65,40 @@
       "datesFormation" : {
         "date1" : {
           "id" : 0,
-          "date" : "2016-10-12T22:00",
+          "date" : "2016-10-20T22:00",
           "lieu" : "Salle 1"
         },
         "date2" : {
           "id" : 1,
-          "date" : "2016-10-13T15:00",
+          "date" : "2016-10-25T15:00",
           "lieu" : "Salle 25"
         },
         "date3" : {
           "id" : 2,
-          "date" : "2016-10-14T14:30",
+          "date" : "2016-10-26T14:30",
           "lieu" : "Salle 5"
         },
         "date4" : {
           "id" : 3,
-          "date" : "2016-10-15T16:05",
+          "date" : "2016-10-28T16:05",
           "lieu" : "Salle 5"
         },
         "date5" : {
           "id" : 4,
-          "date" : "2016-10-16T16:00",
+          "date" : "2016-10-30T16:00",
           "lieu" : "Salle 5"
         },
         "date10" : {
           "id" : 10,
-          "date" : "2016-10-20T12:00",
+          "date" : "2016-10-31T12:00",
           "lieu" : "Salle 5"
         }
       },
       "cours" : {
         "0" : {
           "id" : 0,
-          "libelle" : "Leçon du jour n°1",
-          "sousLibelle" : "Premiers pas en Anglais",
+          "libelle" : "Premiers pas en Anglais",
+          "sousLibelle" : "Découvrez les bases",
           "audio" : true,
           "chap" : null,
           "exercices": {
@@ -146,8 +146,8 @@
         },
         "1" : {
           "id" : 1,
-          "libelle" : "Leçon du jour n°2",
-          "sousLibelle" : "Leçon de grammaire",
+          "libelle" : "Leçon de grammaire",
+          "sousLibelle" : "Accordez les verbes",
           "audio" : true,
           "chap" : null,
           "exercices": {
@@ -195,8 +195,8 @@
         },
         "2" : {
           "id" : 2,
-          "libelle" : "Leçon du jour n°3",
-          "sousLibelle" : "Les verbes modaux",
+          "libelle" : "Les verbes modaux",
+          "sousLibelle" : "Utilisez les bons modaux",
           "audio" : false,
           "chap" : {
             "chap1": {
@@ -261,8 +261,8 @@
         },
         "3" : {
           "id" : 3,
-          "libelle" : "Leçon du jour n°4",
-          "sousLibelle" : "Construire une phrase simple",
+          "libelle" : "Construire une phrase simple",
+          "sousLibelle" : "Faîtes vos premières phrases",
           "audio" : false,
           "chap" : {
             "chap1": {
@@ -331,7 +331,139 @@
       "id" : 1,
       "nom": "Allemand",
       "sousTexteAgenda": "Die nächsten Bildungen",
-      "sousTexteCours": "Lernen Sie eine Stunde täglich"
+      "sousTexteCours": "Lernen Sie eine Stunde täglich",
+      "datesFormation" : {
+        "date13": {
+          "id": 13,
+          "date": "2016-11-08T10:00",
+          "lieu": "Salle 56"
+        },
+        "date14": {
+          "id": 14,
+          "date": "2016-11-11T08:00",
+          "lieu": "Salle 20"
+        }
+      },
+      "cours" : {
+        "7": {
+          "id": 7,
+          "libelle": "Premiers pas en Allemand",
+          "sousLibelle": "Découvrez les bases",
+          "audio": true,
+          "chap": null,
+          "exercices": {
+            "ex1": {
+              "id": 1,
+              "enonce": "Selectionnez la bonne réponse :",
+              "phrase_deb": "Sarah",
+              "phrase_fin": "big.",
+              "propositions": [
+                "am",
+                "are",
+                "is"
+              ],
+              "reponse": "is"
+            },
+            "ex2": {
+              "id": 2,
+              "enonce": "Selectionnez la bonne réponse :",
+              "phrase_deb": "Peter and Sarah",
+              "phrase_fin": "big.",
+              "propositions": [
+                "am",
+                "is",
+                "are"
+              ],
+              "reponse": "are"
+            },
+            "ex3": {
+              "id": 3,
+              "enonce": "Selectionnez la bonne réponse :",
+              "phrase_deb": "You",
+              "phrase_fin": "small.",
+              "propositions": [
+                "am",
+                "are",
+                "is"
+              ],
+              "reponse": "are"
+            },
+            "ex4": {
+              "id": 4,
+              "enonce": "Selectionnez la bonne réponse :",
+              "phrase_deb": "I",
+              "phrase_fin": "beautiful.",
+              "propositions": [
+                "am",
+                "are",
+                "is"
+              ],
+              "reponse": "am"
+            },
+            "ex5": {
+              "id": 5,
+              "enonce": "Selectionnez la bonne réponse :",
+              "phrase_deb": "Peter and I",
+              "phrase_fin": "stupids.",
+              "propositions": [
+                "am",
+                "are",
+                "is"
+              ],
+              "reponse": "are"
+            }
+          }
+        },
+        "8" : {
+          "id" : 8,
+          "libelle" : "Leçon de grammaire",
+          "sousLibelle" : "Accordez les verbes",
+          "audio" : true,
+          "chap" : null,
+          "exercices": {
+            "ex1" : {
+              "id": 1,
+              "enonce": "Selectionnez la bonne réponse :",
+              "phrase_deb": "I must go, that's what John",
+              "phrase_fin": ".",
+              "propositions": ["said", "told", "spoke"],
+              "reponse": "said"
+            },
+            "ex2" : {
+              "id":2,
+              "enonce" : "Selectionnez la bonne réponse :",
+              "phrase_deb" : "",
+              "phrase_fin" : "he is over sixty years old, he still looks young.",
+              "propositions" : ["Though", "As", "However"],
+              "reponse" : "Though"
+            },
+            "ex3" : {
+              "id":3,
+              "enonce" : "Selectionnez la bonne réponse :",
+              "phrase_deb" : "Tom wants to become",
+              "phrase_fin" : "an actor or a dentist.",
+              "propositions" : ["neither", "either", "not"],
+              "reponse" : "either"
+            },
+            "ex4" : {
+              "id":4,
+              "enonce" : "Selectionnez la bonne réponse :",
+              "phrase_deb" : "My brother Stuart wants",
+              "phrase_fin" : "go swimming with him.",
+              "propositions" : ["I", "me too", "me"],
+              "reponse" : "me too"
+            },
+            "ex5" : {
+              "id":5,
+              "enonce" : "Selectionnez la bonne réponse :",
+              "phrase_deb" : "It will be",
+              "phrase_fin" : "fun to go camping with Bob. ",
+              "propositions" : ["a lot of", "very many"],
+              "reponse" : "a lot of"
+            }
+          }
+        }
+      }
     },
     "2": {
       "id" : 2,
@@ -341,28 +473,148 @@
       "datesFormation" : {
         "date5" : {
           "id" : 5,
-          "date" : "2016-10-10T12:00",
+          "date" : "2016-10-20T12:00",
           "lieu" : "Salle 1"
         },
         "date6" : {
           "id" : 6,
-          "date" : "2016-10-15T14:30",
+          "date" : "2016-10-25T14:30",
           "lieu" : "Salle 2"
         },
         "date7" : {
           "id" : 7,
-          "date" : "2016-10-20T16:00",
+          "date" : "2016-10-22T16:00",
           "lieu" : "Salle 3"
         },
         "date8" : {
           "id" : 8,
-          "date" : "2016-10-25T16:05",
+          "date" : "2016-10-30T16:05",
           "lieu" : "Salle 5"
         },
         "date9" : {
           "id" : 9,
-          "date" : "2016-10-30T16:00",
+          "date" : "2016-11-25T16:00",
           "lieu" : "Salle 7"
+        }
+      },
+      "cours" : {
+        "5": {
+          "id": 5,
+          "libelle": "Premiers pas en Espagnol",
+          "sousLibelle": "Découvrez les bases",
+          "audio": true,
+          "chap": null,
+          "exercices": {
+            "ex1": {
+              "id": 1,
+              "enonce": "Selectionnez la bonne réponse :",
+              "phrase_deb": "Sarah",
+              "phrase_fin": "big.",
+              "propositions": [
+                "am",
+                "are",
+                "is"
+              ],
+              "reponse": "is"
+            },
+            "ex2": {
+              "id": 2,
+              "enonce": "Selectionnez la bonne réponse :",
+              "phrase_deb": "Peter and Sarah",
+              "phrase_fin": "big.",
+              "propositions": [
+                "am",
+                "is",
+                "are"
+              ],
+              "reponse": "are"
+            },
+            "ex3": {
+              "id": 3,
+              "enonce": "Selectionnez la bonne réponse :",
+              "phrase_deb": "You",
+              "phrase_fin": "small.",
+              "propositions": [
+                "am",
+                "are",
+                "is"
+              ],
+              "reponse": "are"
+            },
+            "ex4": {
+              "id": 4,
+              "enonce": "Selectionnez la bonne réponse :",
+              "phrase_deb": "I",
+              "phrase_fin": "beautiful.",
+              "propositions": [
+                "am",
+                "are",
+                "is"
+              ],
+              "reponse": "am"
+            },
+            "ex5": {
+              "id": 5,
+              "enonce": "Selectionnez la bonne réponse :",
+              "phrase_deb": "Peter and I",
+              "phrase_fin": "stupids.",
+              "propositions": [
+                "am",
+                "are",
+                "is"
+              ],
+              "reponse": "are"
+            }
+          }
+        },
+        "6" : {
+          "id" : 6,
+          "libelle" : "Leçon de grammaire",
+          "sousLibelle" : "Accordez les verbes",
+          "audio" : true,
+          "chap" : null,
+          "exercices": {
+            "ex1" : {
+              "id": 1,
+              "enonce": "Selectionnez la bonne réponse :",
+              "phrase_deb": "I must go, that's what John",
+              "phrase_fin": ".",
+              "propositions": ["said", "told", "spoke"],
+              "reponse": "said"
+            },
+            "ex2" : {
+              "id":2,
+              "enonce" : "Selectionnez la bonne réponse :",
+              "phrase_deb" : "",
+              "phrase_fin" : "he is over sixty years old, he still looks young.",
+              "propositions" : ["Though", "As", "However"],
+              "reponse" : "Though"
+            },
+            "ex3" : {
+              "id":3,
+              "enonce" : "Selectionnez la bonne réponse :",
+              "phrase_deb" : "Tom wants to become",
+              "phrase_fin" : "an actor or a dentist.",
+              "propositions" : ["neither", "either", "not"],
+              "reponse" : "either"
+            },
+            "ex4" : {
+              "id":4,
+              "enonce" : "Selectionnez la bonne réponse :",
+              "phrase_deb" : "My brother Stuart wants",
+              "phrase_fin" : "go swimming with him.",
+              "propositions" : ["I", "me too", "me"],
+              "reponse" : "me too"
+            },
+            "ex5" : {
+              "id":5,
+              "enonce" : "Selectionnez la bonne réponse :",
+              "phrase_deb" : "It will be",
+              "phrase_fin" : "fun to go camping with Bob. ",
+              "propositions" : ["a lot of", "very many"],
+              "reponse" : "a lot of"
+            }
+          }
         }
       }
     },
@@ -370,7 +622,139 @@
       "id" : 3,
       "nom": "Portugais",
       "sousTexteAgenda": "Os próximos treinamentos",
-      "sousTexteCours": "Aprenda uma lição um dia"
+      "sousTexteCours": "Aprenda uma lição um dia",
+      "datesFormation" : {
+        "date11": {
+          "id": 11,
+          "date": "2016-11-12T10:00",
+          "lieu": "Salle 1"
+        },
+        "date12": {
+          "id": 12,
+          "date": "2016-11-01T08:00",
+          "lieu": "Salle 6"
+        }
+      },
+      "cours" : {
+        "4": {
+          "id": 4,
+          "libelle": "Premiers pas en Portugais",
+          "sousLibelle": "Découvrez les bases",
+          "audio": true,
+          "chap": null,
+          "exercices": {
+            "ex1": {
+              "id": 1,
+              "enonce": "Selectionnez la bonne réponse :",
+              "phrase_deb": "Sarah",
+              "phrase_fin": "big.",
+              "propositions": [
+                "am",
+                "are",
+                "is"
+              ],
+              "reponse": "is"
+            },
+            "ex2": {
+              "id": 2,
+              "enonce": "Selectionnez la bonne réponse :",
+              "phrase_deb": "Peter and Sarah",
+              "phrase_fin": "big.",
+              "propositions": [
+                "am",
+                "is",
+                "are"
+              ],
+              "reponse": "are"
+            },
+            "ex3": {
+              "id": 3,
+              "enonce": "Selectionnez la bonne réponse :",
+              "phrase_deb": "You",
+              "phrase_fin": "small.",
+              "propositions": [
+                "am",
+                "are",
+                "is"
+              ],
+              "reponse": "are"
+            },
+            "ex4": {
+              "id": 4,
+              "enonce": "Selectionnez la bonne réponse :",
+              "phrase_deb": "I",
+              "phrase_fin": "beautiful.",
+              "propositions": [
+                "am",
+                "are",
+                "is"
+              ],
+              "reponse": "am"
+            },
+            "ex5": {
+              "id": 5,
+              "enonce": "Selectionnez la bonne réponse :",
+              "phrase_deb": "Peter and I",
+              "phrase_fin": "stupids.",
+              "propositions": [
+                "am",
+                "are",
+                "is"
+              ],
+              "reponse": "are"
+            }
+          }
+        },
+        "9" : {
+          "id" : 9,
+          "libelle" : "Leçon de grammaire",
+          "sousLibelle" : "Accordez les verbes",
+          "audio" : true,
+          "chap" : null,
+          "exercices": {
+            "ex1" : {
+              "id": 1,
+              "enonce": "Selectionnez la bonne réponse :",
+              "phrase_deb": "I must go, that's what John",
+              "phrase_fin": ".",
+              "propositions": ["said", "told", "spoke"],
+              "reponse": "said"
+            },
+            "ex2" : {
+              "id":2,
+              "enonce" : "Selectionnez la bonne réponse :",
+              "phrase_deb" : "",
+              "phrase_fin" : "he is over sixty years old, he still looks young.",
+              "propositions" : ["Though", "As", "However"],
+              "reponse" : "Though"
+            },
+            "ex3" : {
+              "id":3,
+              "enonce" : "Selectionnez la bonne réponse :",
+              "phrase_deb" : "Tom wants to become",
+              "phrase_fin" : "an actor or a dentist.",
+              "propositions" : ["neither", "either", "not"],
+              "reponse" : "either"
+            },
+            "ex4" : {
+              "id":4,
+              "enonce" : "Selectionnez la bonne réponse :",
+              "phrase_deb" : "My brother Stuart wants",
+              "phrase_fin" : "go swimming with him.",
+              "propositions" : ["I", "me too", "me"],
+              "reponse" : "me too"
+            },
+            "ex5" : {
+              "id":5,
+              "enonce" : "Selectionnez la bonne réponse :",
+              "phrase_deb" : "It will be",
+              "phrase_fin" : "fun to go camping with Bob. ",
+              "propositions" : ["a lot of", "very many"],
+              "reponse" : "a lot of"
+            }
+          }
+        }
+      }
     }
   }
 }

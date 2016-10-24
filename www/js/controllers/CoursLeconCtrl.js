@@ -1,4 +1,4 @@
-appCtrl.controller('CoursLeconCtrl', function($scope, $ionicPlatform, $cordovaMedia, $stateParams, languesService, storageService, $firebaseAuth) {
+appCtrl.controller('CoursLeconCtrl', function($scope, $ionicPlatform, $cordovaMedia, $stateParams, languesService, storageService, $firebaseAuth, $state) {
     $scope.authObj = $firebaseAuth();
     $scope.authObj.$onAuthStateChanged(function(user) {
         if (user) {

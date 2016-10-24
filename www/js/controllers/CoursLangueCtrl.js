@@ -5,6 +5,9 @@ appCtrl.controller('CoursLangueCtrl', function($scope, $stateParams, languesServ
             languesService.getLangue($stateParams.langueId, function(langue) {
                 $scope.langue = langue;
             });
+            profilesService.getLeconDuJour(user.uid, $stateParams.langueId, function(leconDuJour) {
+                $scope.leconDuJour = leconDuJour;
+            });
             profilesService.getLeconsTerm(user.uid, $stateParams.langueId, function (lecons) {
                 $scope.cours = lecons;
             });

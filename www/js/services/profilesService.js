@@ -187,6 +187,40 @@ appServices
                         callback(cours);
                     })
                 });
+            },
+            getLeconDuJour : function(uid, langueId, callback) {
+                languesService.getLecons(langueId, function(lecons) {
+                    var currDateTimestamp = new Date().getTime();
+                    var refDateDerCon = refProfiles.child(uid).child('DateDerCon').child(langueId);
+                    refDateDerCon.once("value", function(snapshot) { //changer en on
+                        if (snapshot.val() == null) {
+                            var newDate = refDateDerCon.push();
+                            newDate.set(currDateTimestamp);
+                            callback(lecons[0]);
+                        }
+                        else {
+                            snapshot.forEach(function (childSnapshot) {
+                                var snapshotTimestamp = childSnapshot.val();
+                                var jourSnapshot = (new Date(snapshotTimestamp)).getDate();
+                                var jourCurrent = (new Date(currDateTimestamp)).getDate();
+                                var moisSnapshot = (new Date(snapshotTimestamp)).getMonth();
+                                var moisCurrent = (new Date(currDateTimestamp)).getMonth();
+                                var anSnapshot = (new Date(snapshotTimestamp)).getFullYear();
+                                var anCurrent = (new Date(currDateTimestamp)).getFullYear();
+                                if((anCurrent > anSnapshot) || (moisCurrent > moisSnapshot) || (jourCurrent >= (jourSnapshot))) {// la date de la dernière connection est supérieur à j+1
+                                    //D'abord on met à jour le date
+                                    var update = {};
+                                    update[childSnapshot.key] = currDateTimestamp;
+                                    refDateDerCon.update(update);
+                                    // On cherche une lecon aléatoire
+                                    var alea = 0;
+                                    do {alea = Math.floor(Math.random() * lecons.length)} while (alea == 0); // indice aléatoire dans le tableau des lecons
+                                    callback(lecons[alea]);
+                                }
+                            })
+                        }
+                    });
+                });
             }
         };
     });

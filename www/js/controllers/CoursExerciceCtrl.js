@@ -106,7 +106,7 @@ appCtrl.controller('CoursExerciceCtrl', function($scope, languesService, profile
                 }
             }
         } else {
-            state.go('login');
+            $state.go('login');
         }
     })
 });

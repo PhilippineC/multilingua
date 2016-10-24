@@ -1,7 +1,10 @@
-appCtrl.controller('AgendaLangueCtrl', function($scope, $stateParams, profilesService, $state, $firebaseAuth) {
+appCtrl.controller('AgendaLangueCtrl', function($scope, languesService, $stateParams, profilesService, $state, $firebaseAuth) {
     $scope.authObj = $firebaseAuth();
     $scope.authObj.$onAuthStateChanged(function(user) {
         if (user) {
+            languesService.getLangue($stateParams.langueId, function(langue) {
+                $scope.langue = langue;
+            });
             profilesService.getRefNotifActiveAgenda(user.uid, $stateParams.langueId, function(dates) {
                 $scope.dates = dates;
             });

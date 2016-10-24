@@ -40,6 +40,12 @@ appServices
                 exercices.$loaded(function() {
                     callback(exercices);
                 })
+            },
+            getLecons : function(langueId, callback) {
+                var lecons = $firebaseArray(refLangues.child(langueId).child('cours'));
+                lecons.$loaded(function() {
+                    callback(lecons);
+                })
             }
         }
     });

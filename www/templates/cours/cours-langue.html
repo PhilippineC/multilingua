@@ -5,9 +5,10 @@
     <ion-content>
 
         <ion-list>
-            <ion-item class="liste-item item item-icon-right item-button-right" ng-repeat="lecon in cours" href="#/tab/cours/{{langue.id}}/{{lecon.id}}">
+            <ion-item ng-class="{'border-leconDuJour': (leconDuJour.id == lecon.id)}" class="liste-item item item-icon-right item-button-right" ng-repeat="lecon in cours" href="#/tab/cours/{{langue.id}}/{{lecon.id}}">
                 <h2>{{lecon.libelle}}</h2>
-                <p>{{lecon.sousLibelle}}</p>
+                <p ng-if="leconDuJour.id == lecon.id" class="leconDuJour">Votre leçon du jour</p>
+                <p ng-if="leconDuJour.id !== lecon.id">{{lecon.sousLibelle}}</p>
                 <i class="icon ion-chevron-right icon-accessory"></i>
                 <div class="buttons">
                     <button ng-if="!lecon.audio" class="button button-icon icon ion-document-text custom-icon"></button>
