@@ -192,7 +192,7 @@ appServices
                 languesService.getLecons(langueId, function(lecons) {
                     var currDateTimestamp = new Date().getTime();
                     var refDateDerCon = refProfiles.child(uid).child('DateDerCon').child(langueId);
-                    refDateDerCon.once("value", function(snapshot) { //changer en on
+                    refDateDerCon.on("value", function(snapshot) { //changer en on
                         if (snapshot.val() == null) {
                            refDateDerCon.set({
                                 currDate : currDateTimestamp,
@@ -203,7 +203,7 @@ appServices
 
                         else {
                             var refCurrDate = refDateDerCon.child('currDate');
-                            refCurrDate.once("value", function(childSnapshot) {
+                            refCurrDate.on("value", function(childSnapshot) {
                                 var snapshotTimestamp = childSnapshot.val();
                                 var jourSnapshot = (new Date(snapshotTimestamp)).getDate();
                                 var jourCurrent = (new Date(currDateTimestamp)).getDate();
@@ -211,7 +211,10 @@ appServices
                                 var moisCurrent = (new Date(currDateTimestamp)).getMonth();
                                 var anSnapshot = (new Date(snapshotTimestamp)).getFullYear();
                                 var anCurrent = (new Date(currDateTimestamp)).getFullYear();
-                                if((anCurrent > anSnapshot) || (moisCurrent > moisSnapshot) || (jourCurrent >= (jourSnapshot + 1))) {// la date de la dernière connection est supérieur à j+1
+                                // A supprimer après tests
+                                var minutesSnapshot = (new Date(snapshotTimestamp)).getMinutes();
+                                var minutesCurrent = (new Date(currDateTimestamp)).getMinutes();
+                                if((anCurrent > anSnapshot) || (moisCurrent > moisSnapshot) || (jourCurrent >= (jourSnapshot + 1)) || (minutesCurrent > (minutesSnapshot +1))) {// la date de la dernière connection est supérieur à j+1
                                     // On cherche une lecon aléatoire
                                     var alea = 0;
                                     do {alea = Math.floor(Math.random() * lecons.length)} while (alea == 0); // indice aléatoire dans le tableau des lecons
@@ -225,7 +228,8 @@ appServices
                                 }
                                 else { // On reste sur la leçon du jour
                                     var refLecDuJour = refDateDerCon.child('leconDuJour');
-                                    refLecDuJour.once("value", function(snapshotLDJ) {
+                                    refLecDuJour.on("value", function(snapshotLDJ) {
+                                        console.log(lecons[snapshotLDJ.val()]);
                                        callback(lecons[snapshotLDJ.val()]);
                                     });
                                 }
