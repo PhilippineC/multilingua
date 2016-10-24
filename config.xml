@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <widget id="com.ionicframework.multilingua506587" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>Multilingua</name>
-  <description>
-        Apprenez une langue étrangère
+  <description>&#xD;
+        Apprenez une langue étrangère&#xD;
     </description>
-  <author email="philippine.chombart@gmail.com" href="http://www.philiweb.net/">
-      Philippine Chombart
+  <author email="philippine.chombart@gmail.com" href="http://www.philiweb.net/">&#xD;
+      Philippine Chombart&#xD;
     </author>
   <content src="index.html"/>
   <access origin="*"/>

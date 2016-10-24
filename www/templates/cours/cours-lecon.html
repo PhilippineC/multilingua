@@ -10,7 +10,7 @@
             <div class="item item-body">
                 <!-- Cas d'une leçon écrite sous forme d'accordéon à déplier -->
                 <div ng-show="!lecon.audio">
-                    <p>Lisez votre leçon du jour et pratiquez avec les exercices !</p>
+                    <p>Lisez votre leçon et pratiquez avec les exercices !</p>
                     <ion-list>
                         <div ng-repeat="chapitre in chapitres">
                             <ion-item class="item-stable"
@@ -29,7 +29,7 @@
 
                 <!-- Cas d'une leçon audio gérée avec médias -->
                 <div ng-show="lecon.audio">
-                    <p>Ecoutez votre leçon du jour et pratiquez avec les exercices !</p>
+                    <p>Ecoutez votre leçon et pratiquez avec les exercices !</p>
                     <div class="button-bar">
                         <a class="button icon ion-play button-positive" ng-click="playMedia()"></a>
                         <a class="button icon ion-pause button-positive" ng-click="pauseMedia()"></a>
