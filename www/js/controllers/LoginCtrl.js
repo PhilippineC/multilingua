@@ -1,4 +1,4 @@
-appCtrl.controller('LoginCtrl', function($scope, $state, $ionicPlatform, $firebaseAuth, storageService) {
+appCtrl.controller('LoginCtrl', function($ionicPopup, $scope, $state, $ionicPlatform, $firebaseAuth, storageService) {
     storageService.getLogo(function(src) {
         $scope.logo = src;
         $scope.$apply();
@@ -12,6 +12,7 @@ appCtrl.controller('LoginCtrl', function($scope, $state, $ionicPlatform, $fireba
             console.log("Signed in as:", firebaseUser.uid);
             $state.go('tab.cours');
         }).catch(function(error) {
+            alert("Authentification failed : " + error.message + "Please do it again.");
             console.error("Authentication failed:", error);
         });
     }
