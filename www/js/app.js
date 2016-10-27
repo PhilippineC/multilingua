@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic','ionic.cloud', 'starter.controllers', 'starter.services', 'ngCordova', 'firebase'])
+angular.module('starter', ['ionic','starter.controllers', 'starter.services', 'ngCordova', 'firebase'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -24,31 +24,6 @@ angular.module('starter', ['ionic','ionic.cloud', 'starter.controllers', 'starte
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
-    }
-  });
-})
-
-.config(function($ionicCloudProvider) {
-  $ionicCloudProvider.init({
-    "core": {
-      "app_id": "3c973b0d"
-    },
-    "push": {
-      "sender_id": "685242094773",
-      "debug" : true,
-      "pluginConfig": {
-        "ios": {
-          "badge": true,
-          "sound": true
-        },
-        "android": {
-          "iconColor": "#343434"
-        }
-      }
-    },
-    "message": {
-      "title" : "Formations!",
-      "text" : "texte a personnaliser"
     }
   });
 })
