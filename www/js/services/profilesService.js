@@ -116,6 +116,7 @@ appServices
                                                 newdateID.set(dateForm.id);
                                                 // Nouvelle notif créer
                                                 var dateFormation = new Date(dateForm.date).getTime();
+                                                dateForm.heure = (new Date(dateForm.date)).toLocaleTimeString("fr-FR" , {hour: "2-digit", minute: "2-digit"});
                                                 notificationsService.pushNotif(dateForm.id, langue.nom, dateForm.heure, dateForm.lieu, dateFormation);
                                             }
                                         })

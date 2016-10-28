@@ -65,17 +65,17 @@
       "datesFormation" : {
         "date1" : {
           "id" : 0,
-          "date" : "2016-10-20T22:00",
+          "date" : "2016-10-28T9:00",
           "lieu" : "Salle 1"
         },
         "date2" : {
           "id" : 1,
-          "date" : "2016-10-25T15:00",
+          "date" : "2016-10-28T12:00",
           "lieu" : "Salle 25"
         },
         "date3" : {
           "id" : 2,
-          "date" : "2016-10-26T14:30",
+          "date" : "2016-10-28T12:30",
           "lieu" : "Salle 5"
         },
         "date4" : {
@@ -473,12 +473,12 @@
       "datesFormation" : {
         "date5" : {
           "id" : 5,
-          "date" : "2016-10-20T12:00",
+          "date" : "2016-10-28T10:30",
           "lieu" : "Salle 1"
         },
         "date6" : {
           "id" : 6,
-          "date" : "2016-10-25T14:30",
+          "date" : "2016-10-28T12:45",
           "lieu" : "Salle 2"
         },
         "date7" : {
