@@ -191,12 +191,11 @@ appServices
             },
             getLeconDuJour : function(uid, langueId, callback) {
                 languesService.getLecons(langueId, function(lecons) {
-                    var currDateTimestamp = new Date().getTime();
                     var refDateDerCon = refProfiles.child(uid).child('DateDerCon').child(langueId);
-                    refDateDerCon.on("value", function(snapshot) { //changer en on
+                    refDateDerCon.on("value", function(snapshot) {
                         if (snapshot.val() == null) {
                            refDateDerCon.set({
-                                currDate : currDateTimestamp,
+                                currDate : new Date().getTime(),
                                 leconDuJour : lecons[0].id
                            });
                             callback(lecons[0]);
@@ -205,6 +204,8 @@ appServices
                         else {
                             var refCurrDate = refDateDerCon.child('currDate');
                             refCurrDate.on("value", function(childSnapshot) {
+                                var currDateTimestamp = new Date().getTime();
+                                console.log(new Date());
                                 var snapshotTimestamp = childSnapshot.val();
                                 var jourSnapshot = (new Date(snapshotTimestamp)).getDate();
                                 var jourCurrent = (new Date(currDateTimestamp)).getDate();
@@ -212,10 +213,7 @@ appServices
                                 var moisCurrent = (new Date(currDateTimestamp)).getMonth();
                                 var anSnapshot = (new Date(snapshotTimestamp)).getFullYear();
                                 var anCurrent = (new Date(currDateTimestamp)).getFullYear();
-                                // A supprimer après tests
-                                var minutesSnapshot = (new Date(snapshotTimestamp)).getMinutes();
-                                var minutesCurrent = (new Date(currDateTimestamp)).getMinutes();
-                                if((anCurrent > anSnapshot) || (moisCurrent > moisSnapshot) || (jourCurrent >= (jourSnapshot + 1)) || (minutesCurrent > (minutesSnapshot +1))) {// la date de la dernière connection est supérieur à j+1
+                                if((anCurrent > anSnapshot) || (moisCurrent > moisSnapshot) || (jourCurrent >= (jourSnapshot + 1))) {// la date de la dernière connection est supérieur à j+1
                                     // On cherche une lecon aléatoire
                                     var alea = 0;
                                     do {alea = Math.floor(Math.random() * lecons.length)} while (alea == 0); // indice aléatoire dans le tableau des lecons
@@ -230,7 +228,6 @@ appServices
                                 else { // On reste sur la leçon du jour
                                     var refLecDuJour = refDateDerCon.child('leconDuJour');
                                     refLecDuJour.on("value", function(snapshotLDJ) {
-                                        console.log(lecons[snapshotLDJ.val()]);
                                        callback(lecons[snapshotLDJ.val()]);
                                     });
                                 }
